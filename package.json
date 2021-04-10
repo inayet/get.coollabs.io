@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node idnex.js"
+    "start": "node index.js"
   },
   "author": "Andras Bacsai",
   "license": "ISC",
