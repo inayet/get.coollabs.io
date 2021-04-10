@@ -1,0 +1,10 @@
+{
+    "coolify":{
+        "main":{
+            "version": "1.0.5"
+        },
+        "next":{
+            "version": "1.0.5"
+        }
+    }
+}
