@@ -1,4 +1,5 @@
 #!/bin/bash
+# This is running on the OS
 WHO=$(whoami)
 if [ $WHO != 'root' ]; then
     echo 'You are not root. Ooops!'
@@ -12,4 +13,4 @@ docker run --rm -w /usr/src/app coolify-base node /usr/src/app/install/check.js
 set -a && source .env && set +a
 
 docker network create $DOCKER_NETWORK --driver overlay
-docker build -t coolify -f install/Dockerfile .
+docker build --label coolify-reserve=true -t coolify -f install/Dockerfile .
