@@ -6,7 +6,7 @@ if [ $WHO != 'root' ]; then
     exit
 fi
 
-FULLRESTART=$(curl -s https://get.coollabs.io/version.json | jq .coolify.next.fullRestart)
+FULLRESTART=$(curl -s https://get.coollabs.io/version.json | jq .coolify.main.fullRestart)
 
 if [ $FULLRESTART ]; then
     docker stack rm coollabs-coolify
