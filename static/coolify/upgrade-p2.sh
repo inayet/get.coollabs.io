@@ -8,7 +8,7 @@ fi
 
 FULLRESTART=$(curl -s https://get.coollabs.io/version.json | jq .coolify.main.fullRestart)
 
-if [ $FULLRESTART ]; then
+if [ "$FULLRESTART" == "true" ]; then
     docker stack rm coollabs-coolify
 else
     docker service rm coollabs-coolify_coolify
