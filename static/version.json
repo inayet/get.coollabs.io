@@ -4,7 +4,7 @@
             "version": "1.0.5"
         },
         "next":{
-            "version": "1.0.8",
+            "version": "1.0.9",
             "fullRestart": true
         }
     }
