@@ -1,5 +1,5 @@
 #!/bin/bash
-# This is running inside coolify-base
+# This is running inside coolify
 WHO=$(whoami)
 if [ $WHO != 'root' ]; then
     echo 'You are not root. Ooops!'
