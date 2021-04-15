@@ -1,5 +1,5 @@
 #!/bin/bash
-# This is running inside coolify
+# This is running in Docker, in the currently running Coolify instance
 WHO=$(whoami)
 if [ $WHO != 'root' ]; then
     echo 'You are not root. Ooops!'
