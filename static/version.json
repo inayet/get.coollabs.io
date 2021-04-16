@@ -2,11 +2,15 @@
     "coolify":{
         "main":{
             "version": "1.0.6",
-            "fullRestart": true
+            "fullRestart": true,
+            "fullRestartDescription": "The next upgrade will also upgrade the proxy service, which means there will be a small downtime for your applications! (around 1-5secs)",
+            "clearServerLogs": true
         },
         "next":{
             "version": "1.0.6",
-            "fullRestart": true
+            "fullRestart": true,
+            "fullRestartDescription": "The next upgrade will also upgrade the proxy service, which means there will be a small downtime for your applications! (around 1-5secs)",
+            "clearServerLogs": true
         }
     }
 }
