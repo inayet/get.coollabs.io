@@ -8,7 +8,10 @@
         "next":{
             "version": "1.0.7",
             "fullRestart": true,
-            "clearServerLogs": true
+            "clearServerLogs": true,
+            "settings": {
+                "sendErrors": true
+            }
         }
     }
 }
