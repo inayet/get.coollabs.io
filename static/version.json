@@ -2,7 +2,6 @@
     "coolify":{
         "main":{
             "version": "1.0.7",
-            "fullRestart": true,
             "clearServerLogs": true,
             "settings": {
                 "sendErrors": true
