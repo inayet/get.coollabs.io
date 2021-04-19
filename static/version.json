@@ -1,13 +1,15 @@
 {
     "coolify":{
         "main":{
-            "version": "1.0.6",
+            "version": "1.0.7",
             "fullRestart": true,
-            "clearServerLogs": true
+            "clearServerLogs": true,
+            "settings": {
+                "sendErrors": true
+            }
         },
         "next":{
             "version": "1.0.8",
-            "fullRestart": true,
             "clearServerLogs": true,
             "settings": {
                 "sendErrors": true
