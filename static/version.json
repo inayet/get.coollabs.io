@@ -8,11 +8,7 @@
             }
         },
         "next":{
-            "version": "1.0.8",
-            "clearServerLogs": true,
-            "settings": {
-                "sendErrors": true
-            }
+            "version": "1.0.9"
         }
     }
 }
