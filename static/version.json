@@ -1,11 +1,7 @@
 {
     "coolify":{
         "main":{
-            "version": "1.0.9",
-            "clearServerLogs": true,
-            "settings": {
-                "sendErrors": true
-            }
+            "version": "1.0.10"
         },
         "next":{
             "version": "1.0.10"
