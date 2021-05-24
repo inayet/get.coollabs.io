@@ -1,4 +1,4 @@
-const fastify = require('fastify')({ logger: true })
+const fastify = require('fastify')({ logger: true, trustProxy: true })
 const path = require('path')
 
 fastify.register(require('fastify-cors'))
