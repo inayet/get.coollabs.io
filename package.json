@@ -4,13 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon -i instances.json index.js",
     "start": "node index.js"
   },
   "author": "Andras Bacsai",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "fastify": "^3.14.2",
     "fastify-cors": "^5.2.0",
     "fastify-static": "^4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }

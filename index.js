@@ -1,5 +1,12 @@
-const fastify = require('fastify')({ logger: true, trustProxy: true })
+require('dotenv').config()
+const fastify = require('fastify')({ logger: false, trustProxy: true })
 const path = require('path')
+const fs = require('fs').promises
+
+const crypto = require('crypto');
+const algorithm = 'aes-256-ctr';
+const secretKey = process.env.ENCRYPT_KEY;
+const iv = process.env.IV
 
 fastify.register(require('fastify-cors'))
 fastify.register(require('fastify-static'), {
@@ -8,6 +15,19 @@ fastify.register(require('fastify-static'), {
 
 fastify.get('/', function (req, reply) {
   return reply.sendFile('index.html')
+})
+fastify.get('/version.json', async function (req, reply) {
+  const json = JSON.parse(await (await fs.readFile('./instances.json', { encoding: 'utf-8' })))
+  const set = new Set(json.instances)
+  const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
+  const encryptedIP = Buffer.concat([cipher.update(req.ip), cipher.final()]).toString('hex');
+
+  if (!set.has(encryptedIP)) {
+    set.add(encryptedIP)
+  }
+  json.instances = Array.from(set)
+  await fs.writeFile('./instances.json', JSON.stringify(json))
+  return reply.sendFile('version.json')
 })
 
 const start = async () => {
