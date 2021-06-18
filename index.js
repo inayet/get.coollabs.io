@@ -25,6 +25,7 @@ fastify.get('/version.json', async function (req, reply) {
   if (!set.has(encryptedIP)) {
     set.add(encryptedIP)
   }
+  json.count = set.size;
   json.instances = Array.from(set)
   await fs.writeFile('./instances.json', JSON.stringify(json))
   return reply.sendFile('version.json')
