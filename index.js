@@ -16,23 +16,20 @@ fastify.register(require('fastify-static'), {
 fastify.get('/', function (req, reply) {
   return reply.sendFile('index.html')
 })
-fastify.get('/version.json', async function (req, reply) {
-  const { type } = req.query
-  if (type) {
-    const json = JSON.parse(await (await fs.readFile('./instances.json', { encoding: 'utf-8' })))
-    const set = new Set(json.instances)
-    const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
-    const encryptedIP = Buffer.concat([cipher.update(req.ip), cipher.final()]).toString('hex');
 
-    if (!set.has(encryptedIP)) {
-      set.add(encryptedIP)
-    }
-    json.count = set.size;
-    json.instances = Array.from(set)
-    await fs.writeFile('./instances.json', JSON.stringify(json))
+fastify.get('/coolify/upgrade-p1.sh', async function (req, reply) {
+  const json = JSON.parse(await (await fs.readFile('./instances.json', { encoding: 'utf-8' })))
+  const set = new Set(json.instances)
+  const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
+  const encryptedIP = Buffer.concat([cipher.update(req.ip), cipher.final()]).toString('hex');
+
+  if (!set.has(encryptedIP)) {
+    set.add(encryptedIP)
   }
-
-  return reply.sendFile('version.json')
+  json.count = set.size;
+  json.instances = Array.from(set)
+  await fs.writeFile('./instances.json', JSON.stringify(json))
+  return reply.sendFile('/coolify/upgrade-p1.sh')
 })
 
 const start = async () => {
