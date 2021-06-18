@@ -1,5 +1,5 @@
 require('dotenv').config()
-const fastify = require('fastify')({ logger: false, trustProxy: true })
+const fastify = require('fastify')({ logger: true, trustProxy: true })
 const path = require('path')
 const fs = require('fs').promises
 
