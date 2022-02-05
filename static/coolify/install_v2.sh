@@ -45,8 +45,6 @@ if [ ! -x "$(command -v docker)" ]; then
         *) echo "Please answer Y or N." ;;
         esac
     done
-
-    exit 1
 fi
 
 SERVER_VERSION=$(docker version -f "{{.Server.Version}}")
