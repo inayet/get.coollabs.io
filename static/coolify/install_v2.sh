@@ -97,4 +97,6 @@ COOLIFY_HOSTED_ON=docker" >coolify/.env
 
 cd coolify && docker run -tid --env-file .env -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate"
 
-echo "Congratulations! Your coolify is ready to use. Please visit http://$IPV4:3000/ to get started. It will take a few minutes to start up, don\'t worry."
+echo "Congratulations! Your coolify is ready to use. Please visit http://$IPV4:3000/ to get started."
+echo ""
+echo "It will take a few minutes to start up, don't worry!"
