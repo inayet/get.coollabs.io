@@ -24,7 +24,7 @@ function errorchecker() {
 }
 trap 'errorchecker' EXIT
 
-echo "Welcome to Coolify installer!"
+echo "Welcome to Coolify installer! To see what I'm doing, please check: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install_v2.sh"
 if [ $WHO != 'root' ]; then
     echo 'Run as root please: sudo sh -c "$(curl -fsSL https://get.coollabs.io/coolify/install.sh)"'
     exit 1
@@ -45,8 +45,6 @@ if [ ! -x "$(command -v docker)" ]; then
         *) echo "Please answer Y or N." ;;
         esac
     done
-
-    exit 1
 fi
 
 SERVER_VERSION=$(docker version -f "{{.Server.Version}}")
