@@ -99,10 +99,10 @@ if [ -f coolify/.env ]; then
     echo "Coolify is already installed, using some of the existing settings."
 else
     echo "COOLIFY_APP_ID=$APP_ID
-    COOLIFY_SECRET_KEY=$RANDOM_SECRET
-    COOLIFY_DATABASE_URL=file:../db/prod.db
-    COOLIFY_SENTRY_DSN=$SENTRY_DSN
-    COOLIFY_HOSTED_ON=docker" > coolify/.env
+COOLIFY_SECRET_KEY=$RANDOM_SECRET
+COOLIFY_DATABASE_URL=file:../db/prod.db
+COOLIFY_SENTRY_DSN=$SENTRY_DSN
+COOLIFY_HOSTED_ON=docker" > coolify/.env
 fi
 
 cd coolify && docker run -tid --env-file .env -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate"
