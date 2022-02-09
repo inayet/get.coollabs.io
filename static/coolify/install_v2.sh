@@ -24,12 +24,12 @@ function errorchecker() {
 }
 trap 'errorchecker' EXIT
 
-echo "Welcome to Coolify installer!"
+echo -e "Welcome to Coolify installer! \n\n"
 echo "This script will install all the required packages and services to run Coolify."
-echo "If you want to install Coolify on a different OS, please open an issue on Github to get supported version."
+echo -e "If you want to install Coolify on a different OS, please open an issue on Github to get supported version.\n\n"
 
-echo "To see what I'm doing, please check: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install_v2.sh"
-echo ""
+echo -e "To see what I'm doing, please check: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install_v2.sh\n\n"
+
 
 if [ $WHO != 'root' ]; then
     echo 'Run as root please: sudo sh -c "$(curl -fsSL https://get.coollabs.io/coolify/install.sh)"'
@@ -107,6 +107,6 @@ fi
 
 cd coolify && docker run -tid --env-file .env -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate"
 
-echo "Congratulations! Your coolify is ready to use."
+echo -e "Congratulations! Your coolify is ready to use.\n"
 echo "Please visit http://<Your Public IP Address>:3000/ to get started."
 echo "It will take a few minutes to start up, don't worry."
