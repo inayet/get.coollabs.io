@@ -28,7 +28,7 @@ echo -e "Welcome to Coolify installer! \n\n"
 echo "This script will install all the required packages and services to run Coolify."
 echo -e "If you want to install Coolify on a different OS, please open an issue on Github to get supported version.\n\n"
 
-echo -e "To see what I'm doing, please check: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install_v2.sh\n\n"
+echo -e "To see what I'm doing, please check: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install.sh\n\n"
 
 
 if [ $WHO != 'root' ]; then
