@@ -10,12 +10,13 @@
   "author": "Andras Bacsai",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "fastify": "^3.14.2",
-    "fastify-cors": "^5.2.0",
-    "fastify-static": "^4.0.1"
+    "dotenv": "^16.0.0",
+    "fastify": "^3.27.1",
+    "fastify-cors": "^6.0.2",
+    "fastify-static": "^4.5.0",
+    "ioredis": "^4.28.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.15"
   }
 }
