@@ -105,6 +105,7 @@ COOLIFY_SENTRY_DSN=$SENTRY_DSN
 COOLIFY_HOSTED_ON=docker" > coolify/.env
 fi
 
+docker pull -q coollabsio/coolify:latest
 cd coolify && docker run -tid --env-file .env -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate"
 
 echo -e "Congratulations! Your coolify is ready to use.\n"
