@@ -78,7 +78,17 @@ cat <<EOF >/etc/docker/daemon.json
     "features": {
         "buildkit": true
     },
-    "live-restore": true
+    "live-restore": true,
+    "default-address-pools" : [
+    {
+      "base" : "172.17.0.0/12",
+      "size" : 20
+    },
+    {
+      "base" : "192.168.0.0/16",
+      "size" : 24
+    }
+  ]
 }
 EOF
 
