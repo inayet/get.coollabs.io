@@ -118,7 +118,7 @@ EOF
     else
         echo -e "/etc/docker/daemon.json file found.\n\nPlease add the following to /etc/docker/daemon.json manually and restart docker with 'systemctl daemon-reload && systemctl restart docker':"
         echo -e '\n{"log-driver":"json-file","log-opts":{"max-size":"100m","max-file":"5"},"features":{"buildkit":true},"live-restore":true,"default-address-pools":[{"base":"172.17.0.0/12","size":20},{"base":"192.168.0.0/16","size":24}]}\n\n'
-        echo -e "Or execute the following script to force: 'curl -fsSL https://get.coollabs.io/coolify/install.sh | bash /dev/stdin -y \n"
+        echo -e "Or execute the following script to force installation: 'curl -fsSL https://get.coollabs.io/coolify/install.sh | bash /dev/stdin -y \n"
         exit 1
     fi
 else
