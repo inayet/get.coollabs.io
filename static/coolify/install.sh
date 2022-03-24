@@ -175,6 +175,6 @@ echo "Installing Coolify..."
 docker pull -q coollabsio/coolify:latest
 cd ~/coolify && docker run -tid --env-file .env -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate"
 
-echo -e "Congratulations! Your coolify is ready to use.\n"
+echo -e "\nCongratulations! Your Coolify instance is ready to use.\n"
 echo "Please visit http://$(curl -4s https://ifconfig.io):3000 to get started."
 echo "It will take a few minutes to start up, don't worry."
