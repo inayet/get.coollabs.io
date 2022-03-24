@@ -37,11 +37,19 @@ echo "This script will install all the required packages and services to run Coo
 echo -e "\nCurrently only Ubuntu is supported. If you want to install Coolify on a different OS, please open an issue on Github to get supported version."
 echo -e "To see what this script is doing, you can check it here: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install.sh\n"
 
+# Check if user is root
 if [ $WHO != 'root' ]; then
     echo 'Run as root please: sudo sh -c "$(curl -fsSL https://get.coollabs.io/coolify/install.sh)"'
     exit 1
 fi
 
+# Check docker swarm
+if [ "$(docker info --format '{{.Swarm.ControlAvailable}}')" = "true" ]; then
+    echo "Coolify does not support Docker Swarm yet. Please use a non-swarm compatible version of Docker."
+    exit 1
+fi
+
+# Check docker version
 if [ ! -x "$(command -v docker)" ]; then
     if [ $YES -eq 1 ]; then
         echo "Installing Docker..."
