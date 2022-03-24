@@ -43,11 +43,6 @@ if [ $WHO != 'root' ]; then
     exit 1
 fi
 
-# Check docker swarm
-if [ "$(docker info --format '{{.Swarm.ControlAvailable}}')" = "true" ]; then
-    echo "Coolify does not support Docker Swarm yet. Please use a non-swarm compatible version of Docker."
-    exit 1
-fi
 
 # Check docker version
 if [ ! -x "$(command -v docker)" ]; then
@@ -71,7 +66,12 @@ if [ ! -x "$(command -v docker)" ]; then
             esac
         done
     fi
+fi
 
+# Check docker swarm
+if [ "$(docker info --format '{{.Swarm.ControlAvailable}}')" = "true" ]; then
+    echo "Coolify does not support Docker Swarm yet. Please use a non-swarm compatible version of Docker."
+    exit 1
 fi
 
 SERVER_VERSION=$(docker version -f "{{.Server.Version}}")
