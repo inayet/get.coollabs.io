@@ -77,11 +77,18 @@ if [ $WHO != 'root' ]; then
     exit 1
 fi
 
+function restartDocker() {
+    # Restarting docker daemon
+    echo "Restarting docker daemon..."
+    sh -c "systemctl daemon-reload && systemctl restart docker"
+}
+
 # Check docker version
 if [ ! -x "$(command -v docker)" ]; then
     if [ $FORCE -eq 1 ]; then
         echo "Installing Docker..."
         sh -c "$(curl --silent -fsSL https://get.docker.com)"
+        restartDocker
     else
         while true; do
             read -p "Docker Engine not found, should I install it automatically? [Yy/Nn] " yn
@@ -89,6 +96,7 @@ if [ ! -x "$(command -v docker)" ]; then
             [Yy]*)
                 echo "Installing Docker..."
                 sh -c "$(curl --silent -fsSL https://get.docker.com)"
+                restartDocker
                 break
                 ;;
             [Nn]*)
@@ -180,9 +188,8 @@ else
 }
 EOF
 fi
-# Restarting docker daemon
-echo "Restarting docker daemon..."
-sh -c "systemctl daemon-reload && systemctl restart docker"
+
+restartDocker
 
 # Downloading docker compose cli plugin
 echo "Installing docker-compose CLI plugin..."
