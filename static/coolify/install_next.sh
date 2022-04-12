@@ -1,14 +1,31 @@
 #!/usr/bin/env bash
+
+[ ! -n "$BASH_VERSION" ] && echo "You can only run this script with bash, not sh / dash." && exit 1
+
 set -eou pipefail
-clear
+VERSION="v0.1.0"
+
+ARCH=$(uname -m)
+
 WHO=$(whoami)
+
 APP_ID=$(cat /proc/sys/kernel/random/uuid)
 RANDOM_SECRET=$(echo $(($(date +%s%N) / 1000000)) | sha256sum | base64 | head -c 32)
 SENTRY_DSN="https://9e7a74326f29422584d2d0bebdc8b7d3@o1082494.ingest.sentry.io/6091062"
+
 DOCKER_MAJOR=20
 DOCKER_MINOR=10
 DOCKER_VERSION_OK="nok"
+
 FORCE=0
+WHITE_LABELED="false"
+
+COOLIFY_CONF_FOUND=$(find ~ -path '*/coolify/.env')
+
+# Making base directory for coolify
+if [ ! -d ~/coolify ]; then
+    mkdir ~/coolify
+fi
 
 function doNotTrack() {
       DO_NOT_TRACK=1
@@ -28,6 +45,16 @@ POSITIONAL_ARGS=()
 
 while [[ $# -gt 0 ]]; do
   case $1 in
+    -h|--help)
+    echo -e "Coolify installer $VERSION
+(source code: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install.sh)\n
+Usage: install.sh [options...] 
+    -d, --debug         Show debug during installation
+    -f, --force         Force installation, no questions asked
+    --do-not-track      Opt-out of telemetry
+    --white-labeled     Install white labeled version. Contact me before using it (https://docs.coollabs.io/contact)"
+    exit 1
+    ;;
     -d|--debug)
       set -x
       shift
@@ -38,6 +65,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --do-not-track)
       doNotTrack
+      shift
+      ;;
+    --white-labeled)
+      WHITE_LABELED="true"
       shift
       ;;
     -*|--*)
@@ -61,32 +92,69 @@ function errorchecker() {
     fi
 }
 trap 'errorchecker' EXIT
+clear
+if [ $FORCE -eq 1 ]; then
+    echo "Force installing Coolify!"
+else
+    echo -e "Welcome to Coolify installer!"
+    echo -e "This script will install all requrirements to run Coolify."
+    echo -e "(Source code of this script: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install.sh)\n"
+    echo "-------------"
+    echo -e "TELEMETRY:"
+    echo -e "1. The script generates a random UUID for your installation to show the number of installed instances on the landing page (https://coolify.io)."
+    echo -e "2. We use Sentry.io to track errors to fix errors quicker.\n"
+    echo -e "If you would like to opt-out, we follow the DO_NOT_TRACK movement (https://consoledonottrack.com/).\n\nSet the environment variable with 'export DO_NOT_TRACK=1' or re-execute the script with: 'curl -fsSL https://get.coollabs.io/coolify/install.sh | bash /dev/stdin --do-not-track'"
+    echo -e "-------------\n"
+fi
 
-echo -e "Welcome to Coolify installer!"
-echo -e "This script will install all the required packages and services to run Coolify."
-echo -e "To see what this script is doing, click here: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install.sh\n"
-echo "-------------"
-echo -e "TELEMETRY:"
-echo -e "1. The script generates an UUID for your installation to show the number of installed instances on the landing page (https://coolify.io)."
-echo -e "2. We use Sentry.io to track errors to fix errors quicker.\n"
-echo -e "If you would like to opt-out, we follow the DO_NOT_TRACK movement (https://consoledonottrack.com/).\nSet the environment variable with 'export DO_NOT_TRACK=1' or re-execute the script with: 'curl -fsSL https://get.coollabs.io/coolify/install.sh | bash /dev/stdin --do-not-track'"
-echo -e "-------------\n"
+
 # Check if user is root
 if [ $WHO != 'root' ]; then
-    echo 'Run as root please: sudo sh -c "$(curl -fsSL https://get.coollabs.io/coolify/install.sh)"'
+    echo 'Run as root please: curl -fsSL https://get.coollabs.io/coolify/install.sh | sudo bash /dev/stdin '
     exit 1
 fi
 
 function restartDocker() {
     # Restarting docker daemon
-    echo "Restarting docker daemon..."
     sh -c "systemctl daemon-reload && systemctl restart docker"
 }
 
+function dockerConfiguration() {
+    cat <<EOF >/etc/docker/daemon.json
+{
+    "log-driver": "json-file",
+    "log-opts": {
+      "max-size": "100m",
+      "max-file": "5"
+    },
+    "features": {
+        "buildkit": true
+    },
+    "live-restore": true,
+    "default-address-pools" : [
+    {
+      "base" : "172.17.0.0/12",
+      "size" : 20
+    },
+    {
+      "base" : "192.168.0.0/16",
+      "size" : 24
+    }
+  ]
+}
+EOF
+}
+function saveCoolifyConfiguration() {
+      echo "COOLIFY_APP_ID=$APP_ID
+COOLIFY_SECRET_KEY=$RANDOM_SECRET
+COOLIFY_DATABASE_URL=file:../db/prod.db
+COOLIFY_SENTRY_DSN=$SENTRY_DSN
+COOLIFY_HOSTED_ON=docker
+COOLIFY_WHITE_LABELED=$WHITE_LABELED" > $COOLIFY_CONF_FOUND
+}
 # Check docker version
 if [ ! -x "$(command -v docker)" ]; then
     if [ $FORCE -eq 1 ]; then
-        echo "Installing Docker..."
         sh -c "$(curl --silent -fsSL https://get.docker.com)"
         restartDocker
     else
@@ -94,7 +162,7 @@ if [ ! -x "$(command -v docker)" ]; then
             read -p "Docker Engine not found, should I install it automatically? [Yy/Nn] " yn
             case $yn in
             [Yy]*)
-                echo "Installing Docker..."
+                echo "Installing Docker."
                 sh -c "$(curl --silent -fsSL https://get.docker.com)"
                 restartDocker
                 break
@@ -131,36 +199,24 @@ fi
 
 if [ -f "/etc/docker/daemon.json" ]; then
     if [ $FORCE -eq 1 ]; then
-        echo -e "/etc/docker/daemon.json file found. We will optimize and overwrite it.\n"
         # Adding docker daemon configuration
-        cat <<EOF >/etc/docker/daemon.json
-{
-    "log-driver": "json-file",
-    "log-opts": {
-      "max-size": "100m",
-      "max-file": "5"
-    },
-    "features": {
-        "buildkit": true
-    },
-    "live-restore": true,
-    "default-address-pools" : [
-    {
-      "base" : "172.17.0.0/12",
-      "size" : 20
-    },
-    {
-      "base" : "192.168.0.0/16",
-      "size" : 24
-    }
-  ]
-}
-EOF
+        dockerConfiguration
     else
-        echo -e "/etc/docker/daemon.json file found.\n\nPlease add the following to /etc/docker/daemon.json manually and restart docker with 'systemctl daemon-reload && systemctl restart docker':"
-        echo -e '\n{"log-driver":"json-file","log-opts":{"max-size":"100m","max-file":"5"},"features":{"buildkit":true},"live-restore":true,"default-address-pools":[{"base":"172.17.0.0/12","size":20},{"base":"192.168.0.0/16","size":24}]}\n\n'
-        echo -e "Or execute the installer with force installation: 'curl -fsSL https://get.coollabs.io/coolify/install.sh | bash /dev/stdin -f' \n"
-        exit 1
+      while true; do
+            read -p "Docker already configured. I will overwrite it, okay? [Yy/Nn] " yn
+            case $yn in
+            [Yy]*)
+                dockerConfiguration
+                restartDocker
+                break
+                ;;
+            [Nn]*)
+                echo "Cannot continue."
+                exit 1
+                ;;
+            *) echo "Please answer Y or N." ;;
+            esac
+        done
     fi
 else
     # Adding docker daemon configuration
@@ -192,29 +248,47 @@ fi
 restartDocker
 
 # Downloading docker compose cli plugin
-echo "Installing docker-compose CLI plugin..."
-mkdir -p ~/.docker/cli-plugins/
-curl --silent -SL https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
-chmod +x ~/.docker/cli-plugins/docker-compose
-
-# Making base directory for coolify
-if [ ! -d ~/coolify ]; then
-    mkdir ~/coolify
+if [ ! -x ~/.docker/cli-plugins/docker-compose ]; then
+    echo "Installing Docker Compose CLI plugin."
+    if [ ! -d ~/.docker/cli-plugins/ ]; then
+        mkdir -p ~/.docker/cli-plugins/
+    fi
+    if [ ARCH == 'arm64' ] || [ ARCH == 'aarch64' ]; then
+        curl --silent -SL https://cdn.coollabs.io/bin/linux/arm64/docker-compose-linux-2.3.4 -o ~/.docker/cli-plugins/docker-compose
+        chmod +x ~/.docker/cli-plugins/docker-compose
+    else 
+        curl --silent -SL https://cdn.coollabs.io/bin/linux/amd64/docker-compose-linux-2.3.4 -o ~/.docker/cli-plugins/docker-compose
+        chmod +x ~/.docker/cli-plugins/docker-compose
+    fi
 fi
-
-if [ -f ~/coolify/.env ]; then
-    echo "Found .env file of Coolify. Using it during setup."
+if [ $FORCE -eq 1 ]; then
+      saveCoolifyConfiguration
 else
-    echo "COOLIFY_APP_ID=$APP_ID
-COOLIFY_SECRET_KEY=$RANDOM_SECRET
-COOLIFY_DATABASE_URL=file:../db/prod.db
-COOLIFY_SENTRY_DSN=$SENTRY_DSN
-COOLIFY_HOSTED_ON=docker" >~/coolify/.env
+    if [ -n "$COOLIFY_CONF_FOUND" ]; then
+        while true; do
+                    read -p "Coolify already configured before. Found configuration file at ${COOLIFY_CONF_FOUND} , do you want to reconfigure it? [Yy/Nn] " yn
+                    case $yn in
+                    [Yy]*)
+                        saveCoolifyConfiguration
+                        break
+                        ;;
+                    [Nn]*)
+                        break
+                        ;;
+                    *) echo "Please answer Y or N." ;;
+                    esac
+                done
+            echo ""
+        else
+            COOLIFY_CONF_FOUND=~/coolify/.env
+            saveCoolifyConfiguration
+    fi
 fi
-
-echo "Installing Coolify..."
+if [ $FORCE -ne 1 ]; then
+    echo "Installing Coolify."
+fi
 docker pull -q coollabsio/coolify:latest
-cd ~/coolify && docker run -tid --env-file .env -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate"
+cd ~/coolify && docker run -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate"
 
 echo -e "\nCongratulations! Your Coolify instance is ready to use.\n"
 echo "Please visit http://$(curl -4s https://ifconfig.io):3000 to get started."
