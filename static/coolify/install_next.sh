@@ -268,7 +268,7 @@ if [ $FORCE -eq 1 ]; then
 else
     if [ -n "$COOLIFY_CONF_FOUND" ]; then
         while true; do
-                    read -p "Coolify already configured before. Found configuration file at ${COOLIFY_CONF_FOUND} , do you want to reconfigure it? [Yy/Nn] " yn
+                    read -p "Coolify configuration found (${COOLIFY_CONF_FOUND}), do you want to overwrite it? [Yy/Nn] " yn
                     case $yn in
                     [Yy]*)
                         saveCoolifyConfiguration
