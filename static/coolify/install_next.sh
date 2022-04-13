@@ -101,22 +101,22 @@ else
     echo -e "(Source code of this script: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install.sh)\n"
     echo "-------------"
     echo -e "TELEMETRY:"
-    echo -e "1. The script generates a random UUID for your installation to show the number of installed instances on the landing page (https://coolify.io)."
-    echo -e "2. We use Sentry.io to track errors to fix errors quicker.\n"
-    echo -e "If you would like to opt-out, we follow the DO_NOT_TRACK movement (https://consoledonottrack.com/).\n\nSet the environment variable with 'export DO_NOT_TRACK=1' or re-execute the script with: 'curl -fsSL https://get.coollabs.io/coolify/install.sh | bash /dev/stdin --do-not-track'"
+    echo -e "1. The script generates a random UUID for your installation to show the number of installed instances on the landing page (https://coolify.io). Nothing else."
+    echo -e "2. We use Sentry.io to track errors to fix them quicker.\n"
+    echo -e "If you would like to opt-out, we follow the DO_NOT_TRACK movement (https://consoledonottrack.com/).\nExecute 'export DO_NOT_TRACK=1' to set the required environment variable or use '--do-not-track' option."
     echo -e "-------------\n"
 fi
 
-
 # Check if user is root
 if [ $WHO != 'root' ]; then
-    echo 'Run as root please: curl -fsSL https://get.coollabs.io/coolify/install.sh | sudo bash /dev/stdin '
+    echo 'Run as root please: sudo bash ./install.sh'
     exit 1
 fi
 
 function restartDocker() {
-    # Restarting docker daemon
-    sh -c "systemctl daemon-reload && systemctl restart docker"
+   # Restarting docker daemon
+   sudo systemctl daemon-reload
+   sudo systemctl restart docker
 }
 
 function dockerConfiguration() {
@@ -178,12 +178,12 @@ if [ ! -x "$(command -v docker)" ]; then
 fi
 
 # Check docker swarm
-if [ "$(docker info --format '{{.Swarm.ControlAvailable}}')" = "true" ]; then
+if [ "$(sudo docker info --format '{{.Swarm.ControlAvailable}}')" = "true" ]; then
     echo "Coolify does not support Docker Swarm yet. Please use a non-swarm compatible version of Docker."
     exit 1
 fi
 
-SERVER_VERSION=$(docker version -f "{{.Server.Version}}")
+SERVER_VERSION=$(sudo docker version -f "{{.Server.Version}}")
 SERVER_VERSION_MAJOR=$(echo "$SERVER_VERSION" | cut -d'.' -f 1)
 SERVER_VERSION_MINOR=$(echo "$SERVER_VERSION" | cut -d'.' -f 2)
 
@@ -252,14 +252,14 @@ restartDocker
 if [ ! -x ~/.docker/cli-plugins/docker-compose ]; then
     echo "Installing Docker Compose CLI plugin."
     if [ ! -d ~/.docker/cli-plugins/ ]; then
-        mkdir -p ~/.docker/cli-plugins/
+        sudo mkdir -p ~/.docker/cli-plugins/
     fi
     if [ ARCH == 'arm64' ] || [ ARCH == 'aarch64' ]; then
-        curl --silent -SL https://cdn.coollabs.io/bin/linux/arm64/docker-compose-linux-2.3.4 -o ~/.docker/cli-plugins/docker-compose
-        chmod +x ~/.docker/cli-plugins/docker-compose
+        sudo curl --silent -SL https://cdn.coollabs.io/bin/linux/arm64/docker-compose-linux-2.3.4 -o ~/.docker/cli-plugins/docker-compose
+        sudo chmod +x ~/.docker/cli-plugins/docker-compose
     else 
-        curl --silent -SL https://cdn.coollabs.io/bin/linux/amd64/docker-compose-linux-2.3.4 -o ~/.docker/cli-plugins/docker-compose
-        chmod +x ~/.docker/cli-plugins/docker-compose
+        sudo curl --silent -SL https://cdn.coollabs.io/bin/linux/amd64/docker-compose-linux-2.3.4 -o ~/.docker/cli-plugins/docker-compose
+        sudo chmod +x ~/.docker/cli-plugins/docker-compose
     fi
 fi
 if [ $FORCE -eq 1 ]; then
@@ -289,8 +289,8 @@ fi
 if [ $FORCE -ne 1 ]; then
     echo "Installing Coolify."
 fi
-docker pull -q coollabsio/coolify:latest > /dev/null
-cd ~/coolify && docker run -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate" > /dev/null
+sudo docker pull -q coollabsio/coolify:latest > /dev/null
+cd ~/coolify && sudo docker run -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate" > /dev/null
 
 echo -e "Congratulations! Your Coolify instance is ready to use.\n"
 echo "Please visit http://$(curl -4s https://ifconfig.io):3000 to get started."
