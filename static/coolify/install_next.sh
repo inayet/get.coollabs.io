@@ -21,7 +21,7 @@ FORCE=0
 WHITE_LABELED="false"
 
 COOLIFY_CONF_FOUND=$(find ~ -path '*/coolify/.env')
-COOLIFY_CONF_FOUND=${COOLIFY_CONF_FOUND:="~/coolify/.env"}
+COOLIFY_CONF_FOUND=${COOLIFY_CONF_FOUND:="$HOME/coolify/.env"}
 
 # Making base directory for coolify
 if [ ! -d ~/coolify ]; then
