@@ -9,19 +9,27 @@ ARCH=$(uname -m)
 
 WHO=$(whoami)
 
-APP_ID=$(cat /proc/sys/kernel/random/uuid)
-RANDOM_SECRET=$(echo $(($(date +%s%N) / 1000000)) | sha256sum | base64 | head -c 32)
-SENTRY_DSN="https://9e7a74326f29422584d2d0bebdc8b7d3@o1082494.ingest.sentry.io/6091062"
+COOLIFY_APP_ID=$(cat /proc/sys/kernel/random/uuid)
+COOLIFY_SECRET_KEY=$(echo $(($(date +%s%N) / 1000000)) | sha256sum | base64 | head -c 32)
+COOLIFY_SENTRY_DSN="https://9e7a74326f29422584d2d0bebdc8b7d3@o1082494.ingest.sentry.io/6091062"
+COOLIFY_WHITE_LABELED=false
 
 DOCKER_MAJOR=20
 DOCKER_MINOR=10
 DOCKER_VERSION_OK="nok"
 
 FORCE=0
-WHITE_LABELED="false"
 
 COOLIFY_CONF_FOUND=$(find ~ -path '*/coolify/.env')
-COOLIFY_CONF_FOUND=${COOLIFY_CONF_FOUND:="$HOME/coolify/.env"}
+if [ -n "$COOLIFY_CONF_FOUND" ]; then
+    eval "$(grep ^COOLIFY_APP_ID= $COOLIFY_CONF_FOUND)"
+    eval "$(grep ^COOLIFY_SECRET_KEY= $COOLIFY_CONF_FOUND)"
+    eval "$(grep ^COOLIFY_DATABASE_URL= $COOLIFY_CONF_FOUND)"
+    eval "$(grep ^COOLIFY_SENTRY_DSN= $COOLIFY_CONF_FOUND)"
+    eval "$(grep ^COOLIFY_HOSTED_ON= $COOLIFY_CONF_FOUND)"
+else
+    COOLIFY_CONF_FOUND=${COOLIFY_CONF_FOUND:="$HOME/coolify/.env"}
+fi
 
 # Making base directory for coolify
 if [ ! -d ~/coolify ]; then
@@ -30,8 +38,8 @@ fi
 
 function doNotTrack() {
       DO_NOT_TRACK=1
-      SENTRY_DSN=
-      APP_ID=
+      COOLIFY_SENTRY_DSN=
+      COOLIFY_APP_ID=
 }
 
 if [ -z ${DO_NOT_TRACK+0} ]; then
@@ -69,7 +77,7 @@ Usage: install.sh [options...]
       shift
       ;;
     --white-labeled)
-      WHITE_LABELED="true"
+      COOLIFY_WHITE_LABELED="true"
       shift
       ;;
     -*|--*)
@@ -93,7 +101,6 @@ function errorchecker() {
     fi
 }
 trap 'errorchecker' EXIT
-clear
 if [ $FORCE -eq 1 ]; then
     echo "Installing Coolify with force option."
 else
@@ -146,12 +153,12 @@ function dockerConfiguration() {
 EOF
 }
 function saveCoolifyConfiguration() {
-      echo "COOLIFY_APP_ID=$APP_ID
-COOLIFY_SECRET_KEY=$RANDOM_SECRET
+      echo "COOLIFY_APP_ID=$COOLIFY_APP_ID
+COOLIFY_SECRET_KEY=$COOLIFY_SECRET_KEY
 COOLIFY_DATABASE_URL=file:../db/prod.db
-COOLIFY_SENTRY_DSN=$SENTRY_DSN
+COOLIFY_SENTRY_DSN=$COOLIFY_SENTRY_DSN
 COOLIFY_HOSTED_ON=docker
-COOLIFY_WHITE_LABELED=$WHITE_LABELED" > $COOLIFY_CONF_FOUND
+COOLIFY_WHITE_LABELED=$COOLIFY_WHITE_LABELED" > $COOLIFY_CONF_FOUND
 }
 # Check docker version
 if [ ! -x "$(command -v docker)" ]; then
@@ -269,7 +276,7 @@ if [ $FORCE -eq 1 ]; then
 else
     if [ -n "$COOLIFY_CONF_FOUND" ]; then
         while true; do
-                    read -p "Coolify configuration found (${COOLIFY_CONF_FOUND}), do you want to overwrite it? [Yy/Nn] " yn
+                    read -p "Coolify configuration found (${COOLIFY_CONF_FOUND}). I will overwrite it, okay? [Yy/Nn] " yn
                     case $yn in
                     [Yy]*)
                         saveCoolifyConfiguration
@@ -281,7 +288,6 @@ else
                     *) echo "Please answer Y or N." ;;
                     esac
                 done
-            echo ""
         else
             saveCoolifyConfiguration
     fi
@@ -292,6 +298,6 @@ fi
 sudo docker pull -q coollabsio/coolify:latest > /dev/null
 cd ~/coolify && sudo docker run -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate" > /dev/null
 
-echo -e "Congratulations! Your Coolify instance is ready to use.\n"
+echo -e "\nCongratulations! Your Coolify instance is ready to use."
 echo "Please visit http://$(curl -4s https://ifconfig.io):3000 to get started."
 echo "It will take a few minutes to start up, don't worry."
