@@ -274,7 +274,7 @@ if [ $FORCE -eq 1 ]; then
     echo 'Updating Coolify configuration.'
     saveCoolifyConfiguration
 else
-    if [ -n "$COOLIFY_CONF_FOUND" ]; then
+    if [ -f "$COOLIFY_CONF_FOUND" ]; then
         while true; do
                     read -p "Coolify configuration found (${COOLIFY_CONF_FOUND}). I will overwrite it, okay? [Yy/Nn] " yn
                     case $yn in
