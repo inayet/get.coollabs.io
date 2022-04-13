@@ -94,7 +94,7 @@ function errorchecker() {
 trap 'errorchecker' EXIT
 clear
 if [ $FORCE -eq 1 ]; then
-    echo "Force installing Coolify!"
+    echo "Installing Coolify with force option."
 else
     echo -e "Welcome to Coolify installer!"
     echo -e "This script will install all requrirements to run Coolify."
@@ -200,6 +200,7 @@ fi
 if [ -f "/etc/docker/daemon.json" ]; then
     if [ $FORCE -eq 1 ]; then
         # Adding docker daemon configuration
+        echo 'Configuring Docker daemon.'
         dockerConfiguration
     else
       while true; do
@@ -262,7 +263,8 @@ if [ ! -x ~/.docker/cli-plugins/docker-compose ]; then
     fi
 fi
 if [ $FORCE -eq 1 ]; then
-      saveCoolifyConfiguration
+    echo 'Updating Coolify configuration.'
+    saveCoolifyConfiguration
 else
     if [ -n "$COOLIFY_CONF_FOUND" ]; then
         while true; do
@@ -287,9 +289,9 @@ fi
 if [ $FORCE -ne 1 ]; then
     echo "Installing Coolify."
 fi
-docker pull -q coollabsio/coolify:latest
-cd ~/coolify && docker run -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate"
+docker pull -q coollabsio/coolify:latest > /dev/null
+cd ~/coolify && docker run -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate" > /dev/null
 
-echo -e "\nCongratulations! Your Coolify instance is ready to use.\n"
+echo -e "Congratulations! Your Coolify instance is ready to use.\n"
 echo "Please visit http://$(curl -4s https://ifconfig.io):3000 to get started."
 echo "It will take a few minutes to start up, don't worry."
