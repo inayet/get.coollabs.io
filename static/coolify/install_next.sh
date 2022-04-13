@@ -20,7 +20,8 @@ DOCKER_VERSION_OK="nok"
 FORCE=0
 WHITE_LABELED="false"
 
-COOLIFY_CONF_FOUND=$(find ~ -path '*/coolify/.env') || '~/coolify/.env'
+COOLIFY_CONF_FOUND=$(find ~ -path '*/coolify/.env')
+COOLIFY_CONF_FOUND=${COOLIFY_CONF_FOUND:='~/coolify/.env'}
 
 # Making base directory for coolify
 if [ ! -d ~/coolify ]; then
