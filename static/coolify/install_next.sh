@@ -97,7 +97,7 @@ if [ $FORCE -eq 1 ]; then
     echo "Installing Coolify with force option."
 else
     echo -e "Welcome to Coolify installer!"
-    echo -e "This script will install all requrirements to run Coolify."
+    echo -e "This script will install all requirements to run Coolify."
     echo -e "(Source code of this script: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install.sh)\n"
     echo "-------------"
     echo -e "TELEMETRY:"
