@@ -50,10 +50,10 @@ while [[ $# -gt 0 ]]; do
     echo -e "Coolify installer $VERSION
 (source code: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install.sh)\n
 Usage: install.sh [options...] 
-    -d, --debug         Show debug during installation
-    -f, --force         Force installation, no questions asked
+    -d, --debug         Show debug logs during installation.
+    -f, --force         Force installation, no questions asked.
     --do-not-track      Opt-out of telemetry. You can set export DO_NOT_TRACK=1 in advance.
-    --white-labeled     Install white labeled version. Contact me before using it (https://docs.coollabs.io/contact)"
+    --white-labeled     Install white labeled version. Contact me before using it (https://docs.coollabs.io/contact)".
     exit 1
     ;;
     -d|--debug)
