@@ -52,7 +52,7 @@ while [[ $# -gt 0 ]]; do
 Usage: install.sh [options...] 
     -d, --debug         Show debug during installation
     -f, --force         Force installation, no questions asked
-    --do-not-track      Opt-out of telemetry
+    --do-not-track      Opt-out of telemetry. You can set export DO_NOT_TRACK=1 in advance.
     --white-labeled     Install white labeled version. Contact me before using it (https://docs.coollabs.io/contact)"
     exit 1
     ;;
