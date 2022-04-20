@@ -78,13 +78,13 @@ Usage: install.sh [options...]
     -i, --white-labeled-logo    Add your remote logo for your white-labeled version. Should be a http/https URL."
     exit 1;
     ;;
-    d | debug )             DEBUG=1; set -x;;
-    f | force )             FORCE=1 ;;
-    n | do-not-track )      doNotTrack ;;
-    w | white-labeled ) COOLIFY_WHITE_LABELED="true";;
-    i | white-labeled-logo )             needs_arg; COOLIFY_WHITE_LABELED_ICON="$OPTARG" ;;
-    ??* )                   die "Illegal option --$OPT" ;;
-    ? )                     exit 2 ;;
+    d | debug )                 DEBUG=1; set -x;;
+    f | force )                 FORCE=1;;
+    n | do-not-track )          doNotTrack;;
+    w | white-labeled )         COOLIFY_WHITE_LABELED="true";;
+    i | white-labeled-logo )    needs_arg; COOLIFY_WHITE_LABELED_ICON="$OPTARG"; COOLIFY_WHITE_LABELED="true";;
+    ??* )                       die "Illegal option --$OPT";;
+    ? )                         exit 2 ;;
   esac
 done
 
