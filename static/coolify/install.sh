@@ -3,7 +3,7 @@
 [ ! -n "$BASH_VERSION" ] && echo "You can only run this script with bash, not sh / dash." && exit 1
 
 set -eou pipefail
-VERSION="v1.0.0"
+VERSION="v1.1.0"
 ARCH=$(uname -m)
 WHO=$(whoami)
 DEBUG=0
@@ -18,6 +18,8 @@ COOLIFY_SECRET_KEY=$(echo $(($(date +%s%N) / 1000000)) | sha256sum | base64 | he
 COOLIFY_SENTRY_DSN="https://9e7a74326f29422584d2d0bebdc8b7d3@o1082494.ingest.sentry.io/6091062"
 COOLIFY_WHITE_LABELED=false
 COOLIFY_WHITE_LABELED_ICON=
+COOLIFY_AUTO_UPDATE=false
+
 COOLIFY_CONF_FOUND=$(find ~ -path '*/coolify/.env')
 
 if [ -n "$COOLIFY_CONF_FOUND" ]; then
@@ -59,7 +61,7 @@ doNotTrack() {
       COOLIFY_APP_ID=
 }
 
-while getopts hdfnwi:-: OPT; do
+while getopts hvdfnawi:-: OPT; do
   if [ "$OPT" = "-" ]; then
     OPT="${OPTARG%%=*}"
     OPTARG="${OPTARG#$OPT}" 
@@ -71,16 +73,20 @@ while getopts hdfnwi:-: OPT; do
 (source code: https://github.com/coollabsio/get.coollabs.io/blob/main/static/coolify/install.sh)\n
 Usage: install.sh [options...] 
     -h, --help                  Show this help menu.
+    -v, --version               Show script version.
     -d, --debug                 Show debug logs during installation.
     -f, --force                 Force installation, no questions asked.\n
     -n, --do-not-track          Opt-out of telemetry. You can set export DO_NOT_TRACK=1 in advance.\n
+    -a, --auto-update           Warning: TESTING PHASE, DO NOT USE IT YET! Enable auto update feature of Coolify. \n
     -w, --white-labeled         Install white-labeled version. Contact me before using it (https://docs.coollabs.io/contact)
     -i, --white-labeled-logo    Add your remote logo for your white-labeled version. Should be a http/https URL."
     exit 1;
     ;;
     d | debug )                 DEBUG=1; set -x;;
     f | force )                 FORCE=1;;
+    v | version )               echo "$VERSION" && exit 1;;
     n | do-not-track )          doNotTrack;;
+    a | auto-update )           COOLIFY_AUTO_UPDATE="true";;
     w | white-labeled )         COOLIFY_WHITE_LABELED="true";;
     i | white-labeled-logo )    needs_arg; COOLIFY_WHITE_LABELED_ICON="$OPTARG"; COOLIFY_WHITE_LABELED="true";;
     ??* )                       die "Illegal option --$OPT";;
@@ -100,6 +106,7 @@ if [ $DEBUG -eq 1 ]; then
     echo "COOLIFY_HOSTED_ON=$COOLIFY_HOSTED_ON"
     echo "COOLIFY_WHITE_LABELED=$COOLIFY_WHITE_LABELED"
     echo "COOLIFY_WHITE_LABELED_ICON=$COOLIFY_WHITE_LABELED_ICON" 
+    echo "COOLIFY_AUTO_UPDATE=$COOLIFY_AUTO_UPDATE"
 fi
 if [ $FORCE -eq 1 ]; then
     echo -e "Installing Coolify with force option!"
@@ -159,7 +166,8 @@ COOLIFY_DATABASE_URL=file:../db/prod.db
 COOLIFY_SENTRY_DSN=$COOLIFY_SENTRY_DSN
 COOLIFY_HOSTED_ON=docker
 COOLIFY_WHITE_LABELED=$COOLIFY_WHITE_LABELED 
-COOLIFY_WHITE_LABELED_ICON=$COOLIFY_WHITE_LABELED_ICON"> $COOLIFY_CONF_FOUND
+COOLIFY_WHITE_LABELED_ICON=$COOLIFY_WHITE_LABELED_ICON
+COOLIFY_AUTO_UPDATE=$COOLIFY_AUTO_UPDATE" > $COOLIFY_CONF_FOUND
 }
 # Check docker version
 if [ ! -x "$(command -v docker)" ]; then
