@@ -3,11 +3,12 @@
 [ ! -n "$BASH_VERSION" ] && echo "You can only run this script with bash, not sh / dash." && exit 1
 
 set -eou pipefail
-VERSION="v1.1.0"
+VERSION="v1.2.0"
 ARCH=$(uname -m)
 WHO=$(whoami)
 DEBUG=0
 FORCE=0
+VERSION=$(curl --silent https://get.coollabs.io/versions.json | grep -i version | xargs | awk '{print $2}')
 
 DOCKER_MAJOR=20
 DOCKER_MINOR=10
@@ -304,10 +305,10 @@ fi
 if [ $FORCE -ne 1 ]; then
     echo "Installing Coolify."
 fi
-echo "Pulling Coolify latest image."
-sudo docker pull -q coollabsio/coolify:latest > /dev/null
+echo "Pulling Coolify latest image ($VERSION)."
+sudo docker pull -q coollabsio/coolify:$VERSION > /dev/null
 echo "Starting Coolify."
-cd ~/coolify && sudo docker run -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:latest /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate" > /dev/null
+cd ~/coolify && sudo docker run -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:$VERSION /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate" > /dev/null
 
 echo -e "Congratulations! Your Coolify instance is ready to use.\n"
 echo "Please visit http://$(curl -4s https://ifconfig.io):3000 to get started."
