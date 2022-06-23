@@ -2,6 +2,9 @@
     "coolify":{
         "main": {
             "version": "2.9.11"
+        },
+        "next": {
+            "version": "2.9.11"
         }
     }
 }
