@@ -3,7 +3,7 @@
 [ ! -n "$BASH_VERSION" ] && echo "You can only run this script with bash, not sh / dash." && exit 1
 
 set -eou pipefail
-VERSION="v1.2.0"
+VERSION="v1.3.0"
 ARCH=$(uname -m)
 WHO=$(whoami)
 DEBUG=0
@@ -62,7 +62,7 @@ doNotTrack() {
       COOLIFY_APP_ID=
 }
 
-while getopts hvdfnawi:-: OPT; do
+while getopts hvdfnawi:x:-: OPT; do
   if [ "$OPT" = "-" ]; then
     OPT="${OPTARG%%=*}"
     OPTARG="${OPTARG#$OPT}" 
@@ -80,7 +80,8 @@ Usage: install.sh [options...]
     -n, --do-not-track          Opt-out of telemetry. You can set export DO_NOT_TRACK=1 in advance.\n
     -a, --auto-update           Warning: TESTING PHASE, DO NOT USE IT YET! Enable auto update feature of Coolify. \n
     -w, --white-labeled         Install white-labeled version. Contact me before using it (https://docs.coollabs.io/contact)
-    -i, --white-labeled-logo    Add your remote logo for your white-labeled version. Should be a http/https URL."
+    -i, --white-labeled-logo    Add your remote logo for your white-labeled version. Should be a http/https URL.
+    -x, --force-version         Force installation of a specific version of Coolify."
     exit 1;
     ;;
     d | debug )                 DEBUG=1; set -x;;
@@ -90,6 +91,7 @@ Usage: install.sh [options...]
     a | auto-update )           COOLIFY_AUTO_UPDATE="true";;
     w | white-labeled )         COOLIFY_WHITE_LABELED="true";;
     i | white-labeled-logo )    needs_arg; COOLIFY_WHITE_LABELED_ICON="$OPTARG"; COOLIFY_WHITE_LABELED="true";;
+    x | force-version)          needs_arg; VERSION="$OPTARG";;
     ??* )                       die "Illegal option --$OPT";;
     ? )                         exit 2 ;;
   esac
