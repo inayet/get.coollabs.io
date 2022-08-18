@@ -62,10 +62,15 @@ doNotTrack() {
       COOLIFY_APP_ID=
 }
 
-restartCoolify() {
-    echo "Restarting Coolify."
-    cd ~/coolify && sudo docker run --rm -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:$VERSION /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate" > /dev/null
-    exit 0
+restartCoolify() {  
+    if [ -f "$COOLIFY_CONF_FOUND" ]; then
+        echo "Restarting Coolify."
+        cd ~/coolify && sudo docker run --rm -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:$VERSION /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate" > /dev/null
+        exit 0
+    else 
+        echo "Coolify never installed on this server. Cannot restart."
+        exit 1
+    fi
 }
 
 while getopts hvdfrnawi:x:-: OPT; do
