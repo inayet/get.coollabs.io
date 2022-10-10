@@ -3,7 +3,7 @@
 [ ! -n "$BASH_VERSION" ] && echo "You can only run this script with bash, not sh / dash." && exit 1
 
 set -eou pipefail
-VERSION="v1.4.0"
+VERSION="v1.4.1"
 ARCH=$(uname -m)
 WHO=$(whoami)
 DEBUG=0
@@ -296,10 +296,15 @@ if [ ! -x ~/.docker/cli-plugins/docker-compose ]; then
     if [ ! -d ~/.docker/cli-plugins/ ]; then
         sudo mkdir -p ~/.docker/cli-plugins/
     fi
-    if [ ARCH == 'arm64' ] || [ ARCH == 'aarch64' ]; then
+    if [ ARCH == 'arm64' ]; then
         sudo curl --silent -SL https://cdn.coollabs.io/bin/linux/arm64/docker-compose-linux-2.6.1 -o ~/.docker/cli-plugins/docker-compose
         sudo chmod +x ~/.docker/cli-plugins/docker-compose
-    else 
+    fi
+    if [ ARCH == 'aarch64' ]; then
+        sudo curl --silent -SL https://cdn.coollabs.io/bin/linux/aarch64/docker-compose-linux-2.6.1 -o ~/.docker/cli-plugins/docker-compose
+        sudo chmod +x ~/.docker/cli-plugins/docker-compose
+    fi
+    if [ ARCH == 'amd64' ]; then 
         sudo curl --silent -SL https://cdn.coollabs.io/bin/linux/amd64/docker-compose-linux-2.6.1 -o ~/.docker/cli-plugins/docker-compose
         sudo chmod +x ~/.docker/cli-plugins/docker-compose
     fi
