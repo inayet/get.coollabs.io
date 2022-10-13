@@ -25,11 +25,18 @@ fastify.get('/instances', async function (req, reply) {
     return reply.redirect('https://coollabs.io')
   }
   const instances = await redis.keys('*')
+  return { count: instances.length }
+})
+fastify.get('/instances/seen', async function (req, reply) {
+  if (req.headers['cool-api-key'] !== process.env.API_KEY) {
+    return reply.redirect('https://coollabs.io')
+  }
+  const instances = await redis.keys('*')
   const lastSeen = []
   for (const instance of instances) {
-    lastSeen.push({ instance, seen: new Date(Number(await redis.get(instance))) })
+    lastSeen.push({ seen: new Date(Number(await redis.get(instance))) })
   }
-  return { count: instances.length, lastSeen }
+  return { lastSeen }
 })
 
 const start = async () => {
