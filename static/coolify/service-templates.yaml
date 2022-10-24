@@ -1903,9 +1903,11 @@
   variables:
     - id: $$coolify_fqdn_minio_console
       name: COOLIFY_FQDN_MINIO_CONSOLE
-      label: Console URL
+      label: Minio Console URL
       defaultValue: ''
       description: ''
+      extras:
+        required: true
     - id: $$config_server_url
       name: MINIO_SERVER_URL
       label: Server URL
