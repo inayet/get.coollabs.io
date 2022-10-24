@@ -1908,7 +1908,7 @@
       description: ''
       extras:
         required: true
-    - id: $$config_browser_redirect_url
+    - id: $$config_minio_browser_redirect_url
       name: MINIO_BROWSER_REDIRECT_URL
       label: Browser Redirect URL
       defaultValue: $$generate_fqdn
