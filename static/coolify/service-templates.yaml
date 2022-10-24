@@ -1888,7 +1888,7 @@
       volumes:
         - '$$id-data-write:/files'
       environment:
-        - MINIO_SERVER_URL=$$config_minio_server_url
+        - MINIO_SERVER_URL=$$coolify_fqdn_minio_console
         - MINIO_BROWSER_REDIRECT_URL=$$config_minio_browser_redirect_url
         - MINIO_DOMAIN=$$config_minio_domain
         - MINIO_ROOT_USER=$$config_minio_root_user
@@ -1902,13 +1902,6 @@
         domain: $$coolify_fqdn_minio_console
   variables:
     - id: $$coolify_fqdn_minio_console
-      name: COOLIFY_FQDN_MINIO_CONSOLE
-      label: Minio Console URL
-      defaultValue: ''
-      description: ''
-      extras:
-        required: true
-    - id: $$config_minio_server_url
       name: MINIO_SERVER_URL
       label: Server URL
       defaultValue: ''
