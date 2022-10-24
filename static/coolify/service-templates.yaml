@@ -1908,7 +1908,7 @@
       description: ''
       extras:
         required: true
-    - id: $$config_server_url
+    - id: $$config_minio_server_url
       name: MINIO_SERVER_URL
       label: Server URL
       defaultValue: ''
