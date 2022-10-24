@@ -1042,7 +1042,7 @@
 - templateVersion: 1.0.0
   defaultVersion: latest
   name: weblate
-  displayName: Weblate
+  name: Weblate
   description: ''
   services:
     $$id:
@@ -1118,8 +1118,7 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: 2022.10.14-1a5b0965
-  name: searxng
-  displayName: SearXNG
+  name: SearXNG
   description: ''
   services:
     $$id:
@@ -1192,8 +1191,7 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: v2.0.6
-  name: glitchtip
-  displayName: GlitchTip
+  name: GlitchTip
   description: ''
   services:
     $$id:
@@ -1356,8 +1354,7 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: v2.13.0
-  name: hasura
-  displayName: Hasura
+  name: Hasura
   description: 'Instant realtime GraphQL APIs on any Postgres application, existing or new.'
   services:
     $$id:
@@ -1420,8 +1417,7 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: postgresql-v1.38.0
-  name: umami
-  displayName: Umami
+  name: Umami
   description: >-
     Umami is a simple, easy to use, self-hosted web analytics solution. The goal
     is to provide you with a friendly privacy-focused alternative to Google
@@ -1626,8 +1622,7 @@
         isVisibleOnUI: true
 - templateVersion: 1.0.0
   defaultVersion: v0.29.1
-  name: meilisearch
-  displayName: MeiliSearch
+  name: MeiliSearch
   description: >-
     MeiliSearch is a lightning Fast, Ultra Relevant, and Typo-Tolerant Search
     Engine
@@ -1656,8 +1651,7 @@
         isVisibleOnUI: true
 - templateVersion: 1.0.0
   defaultVersion: latest
-  name: ghost
-  displayName: Ghost
+  name: Ghost
   description: >-
     Ghost is a free and open source blogging platform written in JavaScript and
     distributed under the MIT License
@@ -1769,8 +1763,7 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: php8.1
-  name: wordpress
-  displayName: WordPress
+  name: WordPress
   description: WordPress is a content management system based on PHP.
   services:
     $$id:
@@ -1855,8 +1848,7 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: 4.7.1
-  name: vscodeserver
-  displayName: VSCode Server
+  name: VSCode Server
   description: >-
     vscode-server by Coder is VS Code running on a remote server, accessible
     through the browser.
@@ -1885,8 +1877,7 @@
         isVisibleOnUI: true
 - templateVersion: 1.0.0
   defaultVersion: RELEASE.2022-10-15T19-57-03Z
-  name: minio
-  displayName: MinIO
+  name: MinIO
   description: ' MinIO is a cloud storage server compatible with Amazon S3'
   services:
     $$id:
@@ -1936,8 +1927,7 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: 0.21.1
-  name: fider
-  displayName: Fider
+  name: Fider
   description: Fider is a platform to collect and organize customer feedback.
   services:
     $$id:
@@ -2050,8 +2040,7 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: 0.198.1
-  name: n8n
-  displayName: n8n.io
+  name: n8n.io
   description: n8n is a free and open node based Workflow Automation Tool.
   services:
     $$id:
@@ -2075,8 +2064,7 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: stable
-  name: plausibleanalytics
-  displayName: PlausibleAnalytics
+  name: PlausibleAnalytics
   description: Plausible is a lightweight and open-source website analytics tool.
   services:
     $$id:
