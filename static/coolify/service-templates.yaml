@@ -1337,16 +1337,19 @@
       defaultValue: $$generate_password
       description: ''
     - id: $$config_postgres_user
+      main: $$id-postgresql
       name: POSTGRES_USER
       label: PostgreSQL User
       defaultValue: $$generate_username
       description: ''
     - id: $$secret_postgres_password
+      main: $$id-postgresql
       name: POSTGRES_PASSWORD
       label: PostgreSQL Password
       defaultValue: ''
       description: ''
     - id: $$config_postgres_db
+      main: $$id-postgresql
       name: POSTGRES_DB
       label: PostgreSQL Database
       defaultValue: hasura
