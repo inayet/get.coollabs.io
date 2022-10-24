@@ -627,8 +627,8 @@
       custom domains. You can use the same value as used for the Appwrite '_APP_DOMAIN'
       variable. The default value is 'localhost'.
   - id: "$$config__app_redis_host"
-    name: Redis | _APP_REDIS_HOST
-    label: ''
+    name: _APP_REDIS_HOST
+    label: Redis | _APP_REDIS_HOST
     defaultValue: "$$id-redis"
     description: ''
   - id: "$$config__app_redis_port"
@@ -649,8 +649,8 @@
     description: Redis server password. This is an optional variable. Default value
       is an empty string.
   - id: "$$config__app_db_host"
-    name: MariaDB | _APP_DB_HOST
-    label: ''
+    name: _APP_DB_HOST
+    label: MariaDB | _APP_DB_HOST
     defaultValue: "$$id-mariadb"
     description: ''
   - id: "$$config__app_db_port"
