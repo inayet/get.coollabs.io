@@ -1896,10 +1896,19 @@
       ports:
         - '9001'
         - '9000'
+      proxy:
+      - port: '9000'
+      - port: '9001'
+        domain: $$coolify_fqdn_minio_console
   variables:
+    - id: $$coolify_fqdn_minio_console
+      name: COOLIFY_FQDN_MINIO_CONSOLE
+      label: Console URL
+      defaultValue: ''
+      description: ''
     - id: $$config_server_url
       name: MINIO_SERVER_URL
-      label: Server/Console URL
+      label: Server URL
       defaultValue: ''
       description: ''
       extras:
