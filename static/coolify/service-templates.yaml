@@ -97,8 +97,7 @@
       ports:
       - '80'
       proxy:
-      - domain: "$$config_coolify_fqdn_appwrite"
-        port: '80'
+      - port: '80'
     "$$id-executor":
       image: appwrite/appwrite:$$core_version
       environment:
@@ -484,11 +483,6 @@
       volumes: []
       entrypoint: worker-webhooks
   variables:
-  - id: "$$config_coolify_fqdn_appwrite"
-    name: COOLIFY_FQDN_APPWRITE
-    label: Appwrite specific FQDN
-    defaultValue: ''
-    description: Appwrite specific domain
   - id: "$$secret__app_db_root_pass"
     name: MARIADB_ROOT_PASSWORD
     label: MariaDB | _APP_DB_ROOT_PASS
