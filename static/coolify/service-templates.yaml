@@ -1041,7 +1041,6 @@
       The default value is 15 minutes.
 - templateVersion: 1.0.0
   defaultVersion: latest
-  name: weblate
   name: Weblate
   description: ''
   services:
