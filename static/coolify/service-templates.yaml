@@ -1897,9 +1897,9 @@
   variables:
     - id: $$coolify_fqdn_minio_console
       name: MINIO_SERVER_URL
-      label: Server URL
+      label: MinIO Server URL
       defaultValue: ''
-      description: ''
+      description: 'Specify the URL hostname the MinIO Console should use for connecting to the MinIO Server.'
       required: true
     - id: $$config_minio_browser_redirect_url
       name: MINIO_BROWSER_REDIRECT_URL
