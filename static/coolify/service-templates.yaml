@@ -1892,7 +1892,7 @@
         - MINIO_BROWSER_REDIRECT_URL=$$config_minio_browser_redirect_url
         - MINIO_DOMAIN=$$config_minio_domain
         - MINIO_ROOT_USER=$$config_minio_root_user
-        - MINIO_ROOT_PASSWORD=$$secret_minio_root_user_password
+        - MINIO_ROOT_PASSWORD=$$secret_minio_root_password
       ports:
         - '9001'
         - '9000'
@@ -1923,7 +1923,7 @@
       label: Root User
       defaultValue: $$generate_username
       description: ''
-    - id: $$secret_minio_root_user_password
+    - id: $$secret_minio_root_password
       name: MINIO_ROOT_PASSWORD
       label: Root User Password
       defaultValue: $$generate_password
