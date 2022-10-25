@@ -1928,6 +1928,8 @@
       label: Root User Password
       defaultValue: $$generate_password
       description: ''
+      extras:
+        isVisibleOnUI: true
 - templateVersion: 1.0.0
   defaultVersion: 0.21.1
   name: Fider
