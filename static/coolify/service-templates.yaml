@@ -1888,12 +1888,12 @@
         - MINIO_ROOT_USER=$$config_minio_root_user
         - MINIO_ROOT_PASSWORD=$$secret_minio_root_password
       ports:
-        - '9001'
         - '9000'
+        - '9001'
       proxy:
       - port: '9000'
-      - port: '9001'
         domain: $$coolify_fqdn_minio_console
+      - port: '9001'
   variables:
     - id: $$coolify_fqdn_minio_console
       name: MINIO_SERVER_URL
