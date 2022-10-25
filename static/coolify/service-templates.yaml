@@ -1093,8 +1093,7 @@
       label: Weblate Admin Password
       defaultValue: $$generate_password
       description: ''
-      extras:
-        isVisibleOnUI: true
+      showOnUI: true
     - id: $$config_postgres_user
       main: $$id-postgresql
       name: POSTGRES_USER
@@ -1107,8 +1106,7 @@
       label: PostgreSQL Password
       defaultValue: $$generate_password
       description: ''
-      extras:
-        isVisibleOnUI: true
+      showOnUI: true
     - id: $$config_postgres_db
       main: $$id-postgresql
       name: POSTGRES_DB
@@ -1397,8 +1395,7 @@
       label: Hasura Admin Password
       defaultValue: $$generate_password
       description: ''
-      extras:
-        isVisibleOnUI: true
+      showOnUI: true
     - id: $$config_postgres_user
       name: POSTGRES_USER
       label: PostgreSQL User
@@ -1617,8 +1614,7 @@
       label: Initial Admin Password
       defaultValue: $$generate_password
       description: ''
-      extras:
-        isVisibleOnUI: true
+      showOnUI: true
 - templateVersion: 1.0.0
   defaultVersion: v0.29.1
   name: MeiliSearch
@@ -1646,8 +1642,7 @@
       label: Master Key
       defaultValue: $$generate_passphrase
       description: ''
-      extras:
-        isVisibleOnUI: true
+      showOnUI: true
 - templateVersion: 1.0.0
   defaultVersion: latest
   name: Ghost
@@ -1872,8 +1867,7 @@
       label: Password
       defaultValue: $$generate_password
       description: ''
-      extras:
-        isVisibleOnUI: true
+      showOnUI: true
 - templateVersion: 1.0.0
   defaultVersion: RELEASE.2022-10-15T19-57-03Z
   name: MinIO
@@ -1906,8 +1900,7 @@
       label: Server URL
       defaultValue: ''
       description: ''
-      extras:
-        required: true
+      required: true
     - id: $$config_minio_browser_redirect_url
       name: MINIO_BROWSER_REDIRECT_URL
       label: Browser Redirect URL
@@ -1928,8 +1921,7 @@
       label: Root User Password
       defaultValue: $$generate_password
       description: ''
-      extras:
-        isVisibleOnUI: true
+      showOnUI: true
 - templateVersion: 1.0.0
   defaultVersion: 0.21.1
   name: Fider
@@ -2171,8 +2163,7 @@
       label: Admin User Password
       defaultValue: $$generate_password
       description: This is the admin password. Please change it.
-      extras:
-        isVisibleOnUI: true
+      showOnUI: true
     - id: $$secret_secret_key_base
       name: SECRET_KEY_BASE
       label: Secret Key Base
