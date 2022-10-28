@@ -1798,21 +1798,25 @@
       label: WordPress DB Host
       defaultValue: $$id-mysql
       description: ''
+      readonly: true
     - id: $$config_wordpress_db_user
       name: WORDPRESS_DB_USER
       label: WordPress DB User
       defaultValue: $$config_mysql_user
       description: ''
+      readonly: true
     - id: $$secret_wordpress_db_password
       name: WORDPRESS_DB_PASSWORD
       label: WordPress DB Password
       defaultValue: $$secret_mysql_password
       description: ''
+      readonly: true
     - id: $$config_wordpress_db_name
       name: WORDPRESS_DB_NAME
       label: WordPress DB Name
       defaultValue: $$config_mysql_database
       description: ''
+      readonly: true
     - id: $$config_wordpress_config_extra
       name: WORDPRESS_CONFIG_EXTRA
       label: WordPress Config Extra
@@ -1829,26 +1833,31 @@
       label: MySQL Root Password
       defaultValue: $$generate_password
       description: ''
+      readonly: true
     - id: $$config_mysql_root_user
       name: MYSQL_ROOT_USER
       label: MySQL Root User
       defaultValue: $$generate_username
       description: ''
+      readonly: true
     - id: $$config_mysql_database
       name: MYSQL_DATABASE
       label: MySQL Database
       defaultValue: wordpress
       description: ''
+      readonly: true
     - id: $$config_mysql_user
       name: MYSQL_USER
       label: MySQL User
       defaultValue: $$generate_username
       description: ''
+      readonly: true
     - id: $$secret_mysql_password
       name: MYSQL_PASSWORD
       label: MySQL Password
       defaultValue: $$generate_password
       description: ''
+      readonly: true
 - templateVersion: 1.0.0
   defaultVersion: php8.1
   type: wordpress-only
