@@ -1758,7 +1758,7 @@
 - templateVersion: 1.0.0
   defaultVersion: php8.1
   type: wordpress
-  name: WordPress with database
+  name: WordPress (with MySQL)
   description: WordPress is a content management system based on PHP with new MySQL database.
   services:
     $$id:
@@ -1861,7 +1861,7 @@
 - templateVersion: 1.0.0
   defaultVersion: php8.1
   type: wordpress-only
-  name: WordPress (without database)
+  name: WordPress (without MySQL)
   description: WordPress is a content management system based on PHP without MySQL.
   services:
     $$id:
