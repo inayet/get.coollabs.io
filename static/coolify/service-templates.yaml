@@ -1089,7 +1089,7 @@
       label: Weblate Admin Password
       defaultValue: $$generate_password
       description: ''
-      showOnUI: true
+      showOnConfiguration: true
     - id: $$config_postgres_user
       main: $$id-postgresql
       name: POSTGRES_USER
@@ -1102,7 +1102,7 @@
       label: PostgreSQL Password
       defaultValue: $$generate_password
       description: ''
-      showOnUI: true
+      showOnConfiguration: true
     - id: $$config_postgres_db
       main: $$id-postgresql
       name: POSTGRES_DB
@@ -1393,7 +1393,7 @@
       label: Hasura Admin Password
       defaultValue: $$generate_password
       description: ''
-      showOnUI: true
+      showOnConfiguration: true
     - id: $$config_postgres_user
       name: POSTGRES_USER
       label: PostgreSQL User
@@ -1612,7 +1612,7 @@
       label: Initial Admin Password
       defaultValue: $$generate_password
       description: ''
-      showOnUI: true
+      showOnConfiguration: true
 - templateVersion: 1.0.0
   defaultVersion: v0.29.1
   type: meilisearch
@@ -1641,7 +1641,7 @@
       label: Master Key
       defaultValue: $$generate_hex(64)
       description: ''
-      showOnUI: true
+      showOnConfiguration: true
 - templateVersion: 1.0.0
   defaultVersion: latest
   type: ghost
@@ -1857,44 +1857,59 @@
   services:
     $$id:
       name: WordPress
-      documentation: ' Taken from https://docs.docker.com/compose/wordpress/'
-      depends_on:
-        - $$id-mysql
+      documentation: 'Taken from https://docs.docker.com/compose/wordpress/'
       image: 'wordpress:$$core_version'
       volumes:
         - '$$id-wordpress-data:/var/www/html'
       environment:
         - WORDPRESS_DB_HOST=$$config_wordpress_db_host
-        - WORDPRESS_DB_USER=$$config_mysql_user
-        - WORDPRESS_DB_PASSWORD=$$secret_mysql_password
-        - WORDPRESS_DB_NAME=$$config_mysql_database
+        - WORDPRESS_DB_PORT=$$config_wordpress_db_port
+        - WORDPRESS_DB_USER=$$config_wordpress_db_user
+        - WORDPRESS_DB_PASSWORD=$$secret_wordpress_db_password
+        - WORDPRESS_DB_NAME=$$config_wordpress_db_name
         - WORDPRESS_CONFIG_EXTRA=$$config_wordpress_config_extra
       ports:
         - '80'
   variables:
     - id: $$config_wordpress_db_host
       name: WORDPRESS_DB_HOST
-      label: WordPress DB Host
-      defaultValue: $$id-mysql
+      label: Database Host
+      defaultValue: ''
       description: ''
+      placeholder: 'db.coollabs.io'
+      required: true
+    - id: $$config_wordpress_db_port
+      name: WORDPRESS_DB_PORT
+      label: Database Port
+      defaultValue: ''
+      description: ''
+      placeholder: '3306'
+      required: true
     - id: $$config_wordpress_db_user
       name: WORDPRESS_DB_USER
-      label: WordPress DB User
-      defaultValue: $$config_mysql_user
+      label: Database User
+      defaultValue: ''
       description: ''
+      placeholder: 'wordpress'
+      required: true
     - id: $$secret_wordpress_db_password
       name: WORDPRESS_DB_PASSWORD
-      label: WordPress DB Password
-      defaultValue: $$secret_mysql_password
+      label: Database Password
+      defaultValue: ''
       description: ''
+      placeholder: 'supers3cr3tpassw0rd!'
+      required: true
+      showOnConfiguration: true
     - id: $$config_wordpress_db_name
       name: WORDPRESS_DB_NAME
-      label: WordPress DB Name
-      defaultValue: $$config_mysql_database
+      label: Database Name
+      defaultValue: ''
       description: ''
+      placeholder: 'wordpress'
+      required: true
     - id: $$config_wordpress_config_extra
       name: WORDPRESS_CONFIG_EXTRA
-      label: WordPress Config Extra
+      label: Extra Config
       defaultValue: ''
       description: ''
       type: 'textarea'
@@ -1903,31 +1918,6 @@
         define('WP_DEBUG_LOG', true);
         define('WP_DEBUG_DISPLAY', false);
         @ini_set('display_errors', 0);
-    - id: $$secret_mysql_root_password
-      name: MYSQL_ROOT_PASSWORD
-      label: MySQL Root Password
-      defaultValue: $$generate_password
-      description: ''
-    - id: $$config_mysql_root_user
-      name: MYSQL_ROOT_USER
-      label: MySQL Root User
-      defaultValue: $$generate_username
-      description: ''
-    - id: $$config_mysql_database
-      name: MYSQL_DATABASE
-      label: MySQL Database
-      defaultValue: wordpress
-      description: ''
-    - id: $$config_mysql_user
-      name: MYSQL_USER
-      label: MySQL User
-      defaultValue: $$generate_username
-      description: ''
-    - id: $$secret_mysql_password
-      name: MYSQL_PASSWORD
-      label: MySQL Password
-      defaultValue: $$generate_password
-      description: ''
 - templateVersion: 1.0.0
   defaultVersion: 4.7.1
   type: vscodeserver
@@ -1956,7 +1946,7 @@
       label: Password
       defaultValue: $$generate_password
       description: ''
-      showOnUI: true
+      showOnConfiguration: true
 - templateVersion: 1.0.0
   defaultVersion: RELEASE.2022-10-15T19-57-03Z
   type: minio
@@ -2011,7 +2001,7 @@
       label: Root User Password
       defaultValue: $$generate_password
       description: ''
-      showOnUI: true
+      showOnConfiguration: true
 - templateVersion: 1.0.0
   defaultVersion: 0.21.1
   type: fider
@@ -2256,7 +2246,7 @@
       label: Admin User Password
       defaultValue: $$generate_password
       description: This is the admin password. Please change it.
-      showOnUI: true
+      showOnConfiguration: true
     - id: $$secret_secret_key_base
       name: SECRET_KEY_BASE
       label: Secret Key Base
@@ -2284,7 +2274,7 @@
       label: PostgreSQL Password
       defaultValue: $$generate_password
       description: ''
-      showOnUI: true
+      showOnConfiguration: true
     - id: $$config_postgresql_database
       main: $$id-postgresql
       name: POSTGRESQL_DATABASE
