@@ -1,4 +1,20 @@
 - templateVersion: 1.0.0
+  defaultVersion: 79.2.3
+  type: grafana
+  name: Grafana
+  description: >-
+    Grafana allows you to query, visualize, alert on and understand your metrics
+    no matter where they are stored.
+  services:
+    $$id:
+      image: grafana/grafana:$$core_version
+      environment: []
+      volumes:
+        - $$id-config:/etc/grafana
+        - $$id-data:/var/lib/grafana
+  variables: []
+  documentation: https://hub.docker.com/r/grafana/grafana
+- templateVersion: 1.0.0
   defaultVersion: 1.0.3
   type: appwrite
   name: Appwrite
@@ -2059,7 +2075,7 @@
       name: DATABASE_URL
       label: Database URL for PostgreSQL
       defaultValue: >-
-        postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db
+        postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db?sslmode=disable
       description: ''
     - id: $$secret_jwt_secret
       name: JWT_SECRET
@@ -2076,6 +2092,7 @@
       label: Mailgun API Key
       defaultValue: ''
       description: ''
+      showOnConfiguration: true
     - id: $$config_email_mailgun_region
       name: EMAIL_MAILGUN_REGION
       label: Mailgun Region
@@ -2106,6 +2123,7 @@
       label: SMTP Password
       defaultValue: ''
       description: ''
+      showOnConfiguration: true
     - id: $$config_email_smtp_enable_starttls
       name: EMAIL_SMTP_ENABLE_STARTTLS
       label: SMTP Enable StartTLS
