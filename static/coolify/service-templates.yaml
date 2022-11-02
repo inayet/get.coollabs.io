@@ -21,7 +21,7 @@
       image: vaultwarden/server:$$core_version
       environment: []
       volumes:
-        - $$id-data:/data/
+        - $$id-data:/data
       ports:
         - '80'
   variables: []
