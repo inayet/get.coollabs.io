@@ -11,7 +11,7 @@
       environment: []
       volumes:
         - $$id-config:/etc/grafana
-        - $$id-data:/var/lib/grafana
+        - $$id-grafana:/var/lib/grafana
   variables: []
   documentation: https://hub.docker.com/r/grafana/grafana
 - templateVersion: 1.0.0
