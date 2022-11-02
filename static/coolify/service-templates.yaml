@@ -1,5 +1,5 @@
 - templateVersion: 1.0.0
-  defaultVersion: 79.2.3
+  defaultVersion: 9.2.3
   type: grafana
   name: Grafana
   description: >-
