@@ -13,6 +13,20 @@
   variables: []
   documentation: https://hub.docker.com/r/silviof/docker-languagetool
 - templateVersion: 1.0.0
+  defaultVersion: 1.26.0
+  type: vaultwarden
+  name: VaultWarden
+  services:
+    $$id:
+      image: vaultwarden/server:$$core_version
+      environment: []
+      volumes:
+        - $$id-data:/data/
+      ports:
+        - '80'
+  variables: []
+  documentation: https://hub.docker.com/r/vaultwarden/server
+- templateVersion: 1.0.0
   defaultVersion: 9.2.3
   type: grafana
   name: Grafana
@@ -2162,7 +2176,7 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: 0.198.1
-  type: n8nio
+  type: n8n
   name: n8n.io
   description: n8n is a free and open node based Workflow Automation Tool.
   services:
