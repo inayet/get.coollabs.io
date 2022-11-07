@@ -1,9 +1,47 @@
 - templateVersion: 1.0.0
+  defaultVersion: v1.8.6
+  documentation: https://docs.appsmith.com/getting-started/setup/instance-configuration/
+  type: appsmith
+  name: Appsmith
+  description: Fastest way to build internal apps over any database or API.
+  services:
+    $$id:
+      image: appsmith/appsmith-ce:$$core_version
+      environment:
+        - APPSMITH_MAIL_ENABLED=$$config_appsmith_mail_enabled
+        - APPSMITH_DISABLE_TELEMETRY=$$config_appsmith_disable_telemetry
+        - APPSMITH_DISABLE_INTERCOM=$$config_appsmith_disable_intercom
+      volumes:
+        - $$id-stacks-data:/appsmith-stacks
+      ports:
+        - '80'
+  variables:
+    - id: $$config_appsmith_mail_enabled
+      name: APPSMITH_MAIL_ENABLED
+      label: Enable Mail
+      defaultValue: 'false'
+      description: ''
+    - id: $$config_appsmith_disable_telemetry
+      name: APPSMITH_DISABLE_TELEMETRY
+      label: Disable Telemetry
+      defaultValue: 'true'
+      description: ''
+    - id: $$config_appsmith_disable_intercom
+      name: APPSMITH_DISABLE_INTERCOM
+      label: Disable Intercom
+      defaultValue: 'true'
+      description: ''
+- templateVersion: 1.0.0
   defaultVersion: 1.0.3
+  documentation: https://appwrite.io/docs
   type: appwrite
   name: Appwrite
-  documentation: https://appwrite.io/docs
   description: Secure Backend Server for Web, Mobile & Flutter Developers.
+  labels:
+    - serverless
+    - backend
+    - storage
+    - api
   services:
     $$id:
       image: appwrite/appwrite:$$core_version
@@ -1110,9 +1148,13 @@
         Database. The default value is 15 minutes.
 - templateVersion: 1.0.0
   defaultVersion: 0.21.1
+  documentation: https://fider.io/docs
   type: fider
   name: Fider
-  description: Fider is a platform to collect and organize customer feedback.
+  description: A platform to collect and organize customer feedback.
+  labels:
+    - suggestion
+    - feedback
   services:
     $$id:
       name: Fider
@@ -1227,11 +1269,14 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: latest
+  documentation: https://ghost.org/resources/
   type: ghost-mariadb
-  name: Ghost (MariaDB)
-  description: >-
-    Ghost is a free and open source blogging platform written in JavaScript and
-    distributed under the MIT License
+  name: Ghost
+  subname: (MariaDB)
+  description: Free and open source blogging platform.
+  labels:
+    - cms
+    - blog
   services:
     $$id:
       name: Ghost
@@ -1341,11 +1386,11 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: '5.22'
+  documentation: https://ghost.org/resources/
   type: ghost-mysql
-  name: Ghost (MySQL)
-  description: >-
-    Ghost is a free and open source blogging platform written in JavaScript and
-    distributed under the MIT License
+  name: Ghost
+  subname: (MySQL)
+  description: Ghost is a free and open source blogging platform.
   services:
     $$id:
       name: Ghost
@@ -1418,11 +1463,11 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: '5.22'
+  documentation: https://ghost.org/resources/
   type: ghost-only
-  name: Ghost Only (No Database)
-  description: >-
-    Ghost is a free and open source blogging platform written in JavaScript and
-    distributed under the MIT License
+  name: Ghost
+  subname: (without Database)
+  description: Free and open source blogging platform.
   services:
     $$id:
       name: Ghost
@@ -1482,9 +1527,13 @@
       required: true
 - templateVersion: 1.0.0
   defaultVersion: v2.0.6
+  documentation: https://glitchtip.com/documentation
   type: glitchtip
   name: GlitchTip
-  description: ''
+  description: Simple, open source error tracking.
+  labels:
+    - sentry
+    - bugsnag
   services:
     $$id:
       name: GlitchTip
@@ -1700,11 +1749,16 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: 9.2.3
+  documentation: https://hub.docker.com/r/grafana/grafana
   type: grafana
   name: Grafana
   description: >-
-    Grafana allows you to query, visualize, alert on and understand your metrics
-    no matter where they are stored.
+    Grafana allows you to query, visualize, alert on and understand your
+    metrics.
+  labels:
+    - monitoring
+    - metrics
+    - dashboard
   services:
     $$id:
       image: grafana/grafana:$$core_version
@@ -1715,12 +1769,15 @@
       ports:
         - '3000'
   variables: []
-  documentation: https://hub.docker.com/r/grafana/grafana
 - templateVersion: 1.0.0
   defaultVersion: v2.13.0
+  documentation: https://hasura.io/docs/latest/index/
   type: hasura
   name: Hasura
   description: Instant realtime GraphQL APIs on any Postgres application, existing or new.
+  labels:
+    - graphql
+    - database
   services:
     $$id:
       name: Hasura
@@ -1780,7 +1837,9 @@
       defaultValue: hasura
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 5.8
+  defaultVersion: '5.8'
+  documentation: https://hub.docker.com/r/silviof/docker-languagetool
+  description: A multilingual grammar, style and spell checker.
   type: languagetool
   name: LanguageTool
   services:
@@ -1792,14 +1851,12 @@
       ports:
         - '8010'
   variables: []
-  documentation: https://hub.docker.com/r/silviof/docker-languagetool
 - templateVersion: 1.0.0
   defaultVersion: v0.29.1
+  documentation: https://docs.meilisearch.com/learn/getting_started/quick_start.html
   type: meilisearch
   name: MeiliSearch
-  description: >-
-    MeiliSearch is a lightning Fast, Ultra Relevant, and Typo-Tolerant Search
-    Engine
+  description: A lightning Fast, Ultra Relevant, and Typo-Tolerant Search Engine.
   services:
     $$id:
       name: MeiliSearch
@@ -1824,9 +1881,13 @@
       showOnConfiguration: true
 - templateVersion: 1.0.0
   defaultVersion: RELEASE.2022-10-15T19-57-03Z
+  documentation: https://min.io/docs/minio
   type: minio
   name: MinIO
-  description: ' MinIO is a cloud storage server compatible with Amazon S3'
+  description: A cloud storage server compatible with Amazon S3.
+  labels:
+    - storage
+    - s3
   services:
     $$id:
       name: MinIO
@@ -1881,9 +1942,16 @@
       showOnConfiguration: true
 - templateVersion: 1.0.0
   defaultVersion: 0.198.1
+  documentation: https://docs.n8n.io
   type: n8n
   name: n8n.io
-  description: n8n is a free and open node based Workflow Automation Tool.
+  description: A free and open node based Workflow Automation Tool.
+  labels:
+    - workflow
+    - automation
+    - ifttt
+    - zapier
+    - nodered
   services:
     $$id:
       name: N8n
@@ -1906,11 +1974,16 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: 0.98.1
+  documentation: https://docs.nocodb.com
   type: nocodb
   name: NocoDB
   description: >-
-    The Open Source Airtable Alternative - Turns any MySQL, PostgreSQL, SQL
-    Server, SQLite & MariaDB into a smart-spreadsheet.
+    Turns any MySQL, PostgreSQL, SQL Server, SQLite & MariaDB into a
+    smart-spreadsheet.
+  labels:
+    - database
+    - airtable
+    - spreadsheet
   services:
     $$id:
       name: NocoDB
@@ -1941,7 +2014,7 @@
       name: PORT
       label: Port
       defaultValue: '8080'
-      description: "\tFor setting app running port."
+      description: ''
     - id: $$secret_database_url
       name: DATABASE_URL
       label: Database URL
@@ -1978,12 +2051,19 @@
       label: NocoDB Disable Telemetry
       defaultValue: '1'
       description: Disable telemetry (Enter "1" to disable).
-  documentation: See https://github.com/nocodb/nocodb
 - templateVersion: 1.0.0
   defaultVersion: stable
+  documentation: https://plausible.io/doc/
   type: plausibleanalytics
   name: Plausible Analytics
-  description: Plausible is a lightweight and open-source website analytics tool.
+  description: A lightweight and open-source website analytics tool.
+  labels:
+    - analytics
+    - statistics
+    - plausible
+    - gdpr
+    - no-cookie
+    - google analytics
   services:
     $$id:
       name: Plausible Analytics
@@ -2125,9 +2205,12 @@
       description: This is the default script name.
 - templateVersion: 1.0.0
   defaultVersion: 2022.10.14-1a5b0965
+  documentation: https://docs.searxng.org/
   type: searxng
   name: SearXNG
-  description: ''
+  description: >-
+    Free internet metasearch engine which aggregates results from more than 70
+    search services.
   services:
     $$id:
       name: SearXNG
@@ -2198,6 +2281,15 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: 0.56.2
+  documentation: https://hub.docker.com/r/zadam/trilium
+  description: >-
+    A hierarchical note taking application with focus on building large personal
+    knowledge bases.
+  labels:
+    - personal
+    - knowledge
+    - notes
+    - wiki
   type: trilium
   name: Trilium Notes
   services:
@@ -2209,15 +2301,13 @@
       ports:
         - '8080'
   variables: []
-  documentation: https://hub.docker.com/r/zadam/trilium
 - templateVersion: 1.0.0
   defaultVersion: postgresql-v1.38.0
+  documentation: https://umami.is/docs/getting-started
   type: umami-postgresql
-  name: Umami (PostgreSQL)
-  description: >-
-    Umami is a simple, easy to use, self-hosted web analytics solution. The goal
-    is to provide you with a friendly privacy-focused alternative to Google
-    Analytics.
+  name: Umami
+  subname: (PostgreSQL)
+  description: A simple, easy to use, self-hosted web analytics solution.
   services:
     $$id:
       name: Umami
@@ -2421,6 +2511,10 @@
       showOnConfiguration: true
 - templateVersion: 1.0.0
   defaultVersion: 1.9.2
+  documentation: https://hub.docker.com/r/louislam/uptime-kuma
+  description: A free & fancy self-hosted monitoring tool.
+  labels:
+    - uptime
   type: uptimekuma
   name: UptimeKuma
   services:
@@ -2432,11 +2526,15 @@
       ports:
         - '3001'
   variables: []
-  documentation: https://hub.docker.com/r/louislam/uptime-kuma
 - templateVersion: 1.0.0
   defaultVersion: 1.26.0
+  documentation: https://hub.docker.com/r/vaultwarden/server
+  description: Bitwarden compatible server written in Rust.
   type: vaultwarden
   name: VaultWarden
+  labels:
+    - bitwarden
+    - password manager
   services:
     $$id:
       image: vaultwarden/server:$$core_version
@@ -2446,14 +2544,15 @@
       ports:
         - '80'
   variables: []
-  documentation: https://hub.docker.com/r/vaultwarden/server
 - templateVersion: 1.0.0
   defaultVersion: 4.7.1
+  documentation: https://coder.com/docs/coder-oss/latest
   type: vscodeserver
   name: VSCode Server
-  description: >-
-    vscode-server by Coder is VS Code running on a remote server, accessible
-    through the browser.
+  description: Visual Studio Code on a remote server, accessible through the browser.
+  labels:
+    - vscode
+    - ide
   services:
     $$id:
       name: VSCode Server
@@ -2478,9 +2577,13 @@
       showOnConfiguration: true
 - templateVersion: 1.0.0
   defaultVersion: latest
+  documentation: https://docs.weblate.org/en/latest/admin/install/docker.html
+  description: A copylefted libre software web-based continuous localization system.
   type: weblate
   name: Weblate
-  description: ''
+  labels:
+    - translate
+    - localization
   services:
     $$id:
       name: Weblate
@@ -2553,9 +2656,15 @@
       description: ''
 - templateVersion: 1.0.0
   defaultVersion: php8.1
+  documentation: https://wordpress.org/
   type: wordpress-only
-  name: WordPress Only (No Database)
-  description: WordPress is a content management system based on PHP without MySQL.
+  name: WordPress
+  subname: (without DB)
+  description: A content management system based on PHP.
+  labels:
+    - wordpress
+    - php
+    - cms
   services:
     $$id:
       name: WordPress
@@ -2622,11 +2731,15 @@
         @ini_set('display_errors', 0);
 - templateVersion: 1.0.0
   defaultVersion: php8.1
+  documentation: https://wordpress.org/
   type: wordpress
-  name: WordPress (with MySQL)
-  description: >-
-    WordPress is a content management system based on PHP with new MySQL
-    database.
+  name: WordPress
+  subname: (MySQL)
+  description: A content management system based on PHP.
+  labels:
+    - wordpress
+    - php
+    - cms
   services:
     $$id:
       name: WordPress
