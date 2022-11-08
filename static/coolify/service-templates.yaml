@@ -2313,6 +2313,7 @@
   services:
     $$id:
       name: Umami
+      documentation: Official docs are [here](https://umami.is/docs/getting-started)
       depends_on:
         - $$id-postgresql
       image: ghcr.io/umami-software/umami:$$core_version
@@ -2326,6 +2327,7 @@
         - '3000'
     $$id-postgresql:
       name: PostgreSQL
+      documentation: Official docs are [here](https://umami.is/docs/getting-started)
       depends_on: []
       image: postgres:12-alpine
       volumes:
