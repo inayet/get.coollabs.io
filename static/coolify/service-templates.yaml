@@ -189,7 +189,6 @@
         - $$id-functions:/storage/functions
         - $$id-builds:/storage/builds
         - /var/run/docker.sock:/var/run/docker.sock
-        - /tmp:/tmp
       entrypoint: executor
     $$id-influxdb:
       image: appwrite/influxdb:1.5.0
