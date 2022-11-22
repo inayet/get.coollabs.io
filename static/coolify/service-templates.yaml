@@ -1527,6 +1527,7 @@
       placeholder: ghost_db
       required: true
 - templateVersion: 1.0.0
+  ignore: true
   defaultVersion: '1.17'
   documentation: https://docs.gitea.io
   type: gitea
