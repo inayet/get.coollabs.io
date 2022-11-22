@@ -1527,7 +1527,6 @@
       placeholder: ghost_db
       required: true
 - templateVersion: 1.0.0
-  ignore: true
   defaultVersion: '1.17'
   documentation: https://docs.gitea.io
   type: gitea
@@ -1555,7 +1554,7 @@
         - ROOT_URL=$$config_root_url
         - SECRET_KEY=$$secret_secret_key
         - INTERNAL_TOKEN=$$secret_internal_token
-        - SSH_PORT=$$config_hostport_ssh
+        - SSH_PORT=22
         - START_SSH_SERVER=$$config_start_ssh_server
       ports:
         - '3000'
@@ -1595,13 +1594,11 @@
       label: Secret Key
       defaultValue: $$generate_hex(32)
       description: ''
-      showOnConfiguration: true
     - id: $$secret_internal_token
       name: INTERNAL_TOKEN
       label: Internal JWT Token
       defaultValue: $$generate_token
       description: ''
-      showOnConfiguration: true
 - templateVersion: 1.0.0
   defaultVersion: v2.0.6
   documentation: https://glitchtip.com/documentation
