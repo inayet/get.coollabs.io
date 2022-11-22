@@ -1527,7 +1527,6 @@
       placeholder: ghost_db
       required: true
 - templateVersion: 1.0.0
-  ignore: true
   defaultVersion: '1.17'
   documentation: https://docs.gitea.io
   type: gitea
@@ -1556,6 +1555,7 @@
         - SECRET_KEY=$$secret_secret_key
         - INTERNAL_TOKEN=$$secret_internal_token
         - SSH_PORT=$$config_hostport_ssh
+        - START_SSH_SERVER=$$config_start_ssh_server
       ports:
         - '3000'
         - '22'
@@ -1578,6 +1578,11 @@
       name: SSH_DOMAIN
       label: SSH Domain
       defaultValue: $$generate_domain
+      description: ''
+    - id: $$config_start_ssh_server
+      name: START_SSH_SERVER
+      label: Start SSH Server
+      defaultValue: 'true'
       description: ''
     - id: $$config_root_url
       name: ROOT_URL
