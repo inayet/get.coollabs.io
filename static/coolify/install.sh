@@ -3,7 +3,7 @@
 [ ! -n "$BASH_VERSION" ] && echo "You can only run this script with bash, not sh / dash." && exit 1
 
 set -eou pipefail
-VERSION="v1.4.1"
+SCRIPT_VERSION="v1.4.1"
 ARCH=$(uname -m)
 WHO=$(whoami)
 DEBUG=0
@@ -16,7 +16,6 @@ DOCKER_VERSION_OK="nok"
 
 COOLIFY_APP_ID=$(cat /proc/sys/kernel/random/uuid)
 COOLIFY_SECRET_KEY=$(echo $(($(date +%s%N) / 1000000)) | sha256sum | base64 | head -c 32)
-COOLIFY_SENTRY_DSN="https://9e7a74326f29422584d2d0bebdc8b7d3@o1082494.ingest.sentry.io/6091062"
 COOLIFY_WHITE_LABELED=false
 COOLIFY_WHITE_LABELED_ICON=
 COOLIFY_AUTO_UPDATE=false
@@ -27,7 +26,6 @@ if [ -n "$COOLIFY_CONF_FOUND" ]; then
     eval "$(grep ^COOLIFY_APP_ID= $COOLIFY_CONF_FOUND)"
     eval "$(grep ^COOLIFY_SECRET_KEY= $COOLIFY_CONF_FOUND)"
     eval "$(grep ^COOLIFY_DATABASE_URL= $COOLIFY_CONF_FOUND)"
-    eval "$(grep ^COOLIFY_SENTRY_DSN= $COOLIFY_CONF_FOUND)"
     eval "$(grep ^COOLIFY_HOSTED_ON= $COOLIFY_CONF_FOUND)"
     eval "$(grep ^COOLIFY_WHITE_LABELED_ICON= $COOLIFY_CONF_FOUND)"
 else
@@ -58,7 +56,6 @@ errorchecker() {
 }
 doNotTrack() {
       DO_NOT_TRACK=1
-      COOLIFY_SENTRY_DSN=
       COOLIFY_APP_ID=
 }
 
@@ -103,7 +100,7 @@ Usage: install.sh [options...]
     ;;
     d | debug )                 DEBUG=1; set -x;;
     f | force )                 FORCE=1;;
-    v | version )               echo "$VERSION" && exit 1;;
+    v | version )               echo "$SCRIPT_VERSION" && exit 1;;
     r | restart )               restartCoolify;;
     n | do-not-track )          doNotTrack;;
     a | auto-update )           COOLIFY_AUTO_UPDATE="true";;
@@ -123,7 +120,6 @@ if [ $DEBUG -eq 1 ]; then
     echo "COOLIFY_APP_ID=$COOLIFY_APP_ID"
     echo "COOLIFY_SECRET_KEY=$COOLIFY_SECRET_KEY"
     echo "COOLIFY_DATABASE_URL=${COOLIFY_DATABASE_URL:-../db/prod.db}"
-    echo "COOLIFY_SENTRY_DSN=$COOLIFY_SENTRY_DSN"
     echo "COOLIFY_HOSTED_ON=${COOLIFY_HOSTED_ON:-docker}"
     echo "COOLIFY_WHITE_LABELED=$COOLIFY_WHITE_LABELED"
     echo "COOLIFY_WHITE_LABELED_ICON=$COOLIFY_WHITE_LABELED_ICON" 
@@ -187,7 +183,6 @@ saveCoolifyConfiguration() {
 COOLIFY_APP_ID=$COOLIFY_APP_ID
 COOLIFY_SECRET_KEY=$COOLIFY_SECRET_KEY
 COOLIFY_DATABASE_URL=file:../db/prod.db
-COOLIFY_SENTRY_DSN=$COOLIFY_SENTRY_DSN
 COOLIFY_HOSTED_ON=docker
 COOLIFY_WHITE_LABELED=$COOLIFY_WHITE_LABELED 
 COOLIFY_WHITE_LABELED_ICON=$COOLIFY_WHITE_LABELED_ICON
