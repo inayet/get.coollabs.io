@@ -2565,6 +2565,19 @@
       defaultValue: plausible.js
       description: This is the default script name.
 - templateVersion: 1.0.0
+  defaultVersion: 0.8.0
+  documentation: https://pocketbase.io/docs/
+  type: pocketbase
+  name: Pocketbase
+  description: Open Source realtime backend in 1 file
+  services:
+    $$id:
+      image: coollabsio/pocketbase:$$core_version
+      volumes:
+        - $$id-data:/app/pb_data
+      ports:
+        - '8080'
+- templateVersion: 1.0.0
   defaultVersion: 2022.10.14-1a5b0965
   documentation: https://docs.searxng.org/
   type: searxng
