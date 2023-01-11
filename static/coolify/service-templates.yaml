@@ -2746,7 +2746,7 @@
       defaultValue: plausible.js
       description: This is the default script name.
 - templateVersion: 1.0.0
-  defaultVersion: 0.10.2
+  defaultVersion: 0.11.0
   documentation: https://pocketbase.io/docs/
   type: pocketbase
   name: Pocketbase
