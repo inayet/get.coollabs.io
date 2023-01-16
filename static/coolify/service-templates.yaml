@@ -1,5 +1,5 @@
 - templateVersion: 1.0.0
-  defaultVersion: v1.8.9
+  defaultVersion: v1.9.3
   documentation: https://docs.appsmith.com/getting-started/setup/instance-configuration/
   type: appsmith
   name: Appsmith
@@ -32,7 +32,7 @@
       defaultValue: 'true'
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 1.1.2
+  defaultVersion: 1.2.0
   documentation: https://appwrite.io/docs
   type: appwrite
   name: Appwrite
@@ -1270,7 +1270,7 @@
       description: Secret string for the project.
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: 0.21.1
+  defaultVersion: stable
   documentation: https://fider.io/docs
   type: fider
   name: Fider
@@ -1390,7 +1390,7 @@
       description: ''
 - templateVersion: 1.0.0
   ignore: true
-  defaultVersion: latest
+  defaultVersion: 5.30.0
   documentation: https://docs.ghost.org
   arch: amd64
   type: ghost-mariadb
@@ -1507,7 +1507,7 @@
       defaultValue: $$generate_password
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 5.25.3
+  defaultVersion: 5.30.0
   documentation: https://docs.ghost.org
   type: ghost-mysql
   name: Ghost
@@ -1583,7 +1583,7 @@
       defaultValue: $$generate_password
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 5.25.3
+  defaultVersion: 5.30.0
   documentation: https://docs.ghost.org
   type: ghost-only
   name: Ghost
@@ -1646,7 +1646,7 @@
       placeholder: ghost_db
       required: true
 - templateVersion: 1.0.0
-  defaultVersion: '1.17'
+  defaultVersion: '1.18'
   documentation: https://docs.gitea.io
   type: gitea
   name: Gitea
@@ -1719,7 +1719,7 @@
       defaultValue: $$generate_token
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: v3.0.0
+  defaultVersion: v3.0.2
   documentation: https://glitchtip.com/documentation
   type: glitchtip
   name: GlitchTip
@@ -1941,7 +1941,7 @@
       defaultValue: glitchtip
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 9.3.1
+  defaultVersion: 9.3.2
   documentation: https://hub.docker.com/r/grafana/grafana
   type: grafana
   name: Grafana
@@ -1963,7 +1963,7 @@
         - '3000'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: v2.16.0
+  defaultVersion: v2.16.1
   documentation: https://hasura.io/docs/latest/index/
   type: hasura
   name: Hasura
@@ -2116,7 +2116,7 @@
       defaultValue: keycloak
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: '5.8'
+  defaultVersion: '6.0'
   documentation: https://hub.docker.com/r/silviof/docker-languagetool
   description: A multilingual grammar, style and spell checker.
   type: languagetool
@@ -2243,7 +2243,7 @@
       defaultValue: 'false'
       description: Disable or enable web ui. True or false.
 - templateVersion: 1.0.0
-  defaultVersion: v0.30.1
+  defaultVersion: v0.30.5
   documentation: https://docs.meilisearch.com/learn/getting_started/quick_start.html
   type: meilisearch
   name: MeiliSearch
@@ -2271,7 +2271,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: RELEASE.2022-12-12T19-27-27Z
+  defaultVersion: RELEASE.2023-01-12T02-06-16Z
   documentation: https://min.io/docs/minio
   type: minio
   name: MinIO
@@ -2332,7 +2332,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: 0.207.0
+  defaultVersion: 0.210.1
   documentation: https://docs.n8n.io
   type: n8n
   name: n8n.io
@@ -2363,7 +2363,7 @@
       defaultValue: $$generate_fqdn
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 0.99.1
+  defaultVersion: 0.101.2
   documentation: https://docs.nocodb.com
   type: nocodb
   name: NocoDB
@@ -2600,7 +2600,7 @@
       defaultValue: plausible.js
       description: This is the default script name.
 - templateVersion: 1.0.0
-  defaultVersion: stable
+  defaultVersion: v1.5.1
   documentation: https://plausible.io/doc/
   arch: amd64
   type: plausibleanalytics
@@ -2759,7 +2759,7 @@
       ports:
         - '8080'
 - templateVersion: 1.0.0
-  defaultVersion: 2022.12.12-966e9c3c
+  defaultVersion: 2023.01.15-52d41559
   documentation: https://docs.searxng.org/
   type: searxng
   name: SearXNG
@@ -2834,7 +2834,7 @@
       defaultValue: $$generate_password
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 0.57.4
+  defaultVersion: 0.58.4
   documentation: https://hub.docker.com/r/zadam/trilium
   description: >-
     A hierarchical note taking application with focus on building large personal
@@ -3267,7 +3267,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: 1.18.5
+  defaultVersion: 1.19.4
   documentation: https://hub.docker.com/r/louislam/uptime-kuma
   description: A free & fancy self-hosted monitoring tool.
   labels:
@@ -3284,7 +3284,7 @@
         - '3001'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: 1.26.0
+  defaultVersion: 1.27.0
   documentation: https://hub.docker.com/r/vaultwarden/server
   description: Bitwarden compatible server written in Rust.
   type: vaultwarden
@@ -3302,7 +3302,7 @@
         - '80'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: 4.9.0
+  defaultVersion: 4.9.1
   documentation: https://coder.com/docs/coder-oss/latest
   type: vscodeserver
   name: VSCode Server
@@ -3316,7 +3316,6 @@
       depends_on: []
       image: codercom/code-server:$$core_version
       volumes:
-        - $$id-config-data:/home/coder/.local/share/code-server
         - $$id-vscodeserver-data:/home/coder
         - $$id-keys-directory:/root/.ssh
         - $$id-theme-and-plugin-directory:/root/.local/share/code-server
@@ -3411,7 +3410,7 @@
       defaultValue: weblate
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 0.8.1
+  defaultVersion: 0.8.0
   documentation: https://github.com/benbusby/whoogle-search
   type: whoogle
   name: Whoogle Search
@@ -3455,7 +3454,7 @@
       defaultValue: $$generate_password
       description: password to encrypt preferences
 - templateVersion: 1.0.0
-  defaultVersion: php8.1
+  defaultVersion: php8.2
   documentation: https://wordpress.org/
   type: wordpress-only
   name: WordPress
@@ -3529,7 +3528,7 @@
         define('WP_DEBUG_DISPLAY', false);
         @ini_set('display_errors', 0);
 - templateVersion: 1.0.0
-  defaultVersion: php8.1
+  defaultVersion: php8.2
   documentation: https://wordpress.org/
   type: wordpress
   name: WordPress
