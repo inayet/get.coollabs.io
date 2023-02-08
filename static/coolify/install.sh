@@ -223,8 +223,7 @@ SERVER_VERSION=$(sudo docker version -f "{{.Server.Version}}")
 SERVER_VERSION_MAJOR=$(echo "$SERVER_VERSION" | cut -d'.' -f 1)
 SERVER_VERSION_MINOR=$(echo "$SERVER_VERSION" | cut -d'.' -f 2)
 
-if [ "$SERVER_VERSION_MAJOR" -ge "$DOCKER_MAJOR" ] &&
-    [ "$SERVER_VERSION_MINOR" -ge "$DOCKER_MINOR" ]; then
+if [[ "$SERVER_VERSION_MAJOR" -gt "$DOCKER_MAJOR" || ( "$SERVER_VERSION_MAJOR" -eq "$DOCKER_MAJOR" && "$SERVER_VERSION_MINOR" -ge "$DOCKER_MINOR" ) ]]; then
     DOCKER_VERSION_OK="ok"
 fi
 
