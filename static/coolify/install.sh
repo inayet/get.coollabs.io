@@ -62,7 +62,7 @@ doNotTrack() {
 restartCoolify() {  
     if [ -f "$COOLIFY_CONF_FOUND" ]; then
         echo "Restarting Coolify."
-        cd ~/coolify && sudo docker run --rm -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:$VERSION /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate" > /dev/null
+        cd ~/coolify && sudo docker run --rm -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite ghcr.io/coollabsio/coolify:${VERSION:-latest} /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate" > /dev/null
         exit 0
     else 
         echo "Coolify never installed on this server. Cannot restart."
@@ -179,7 +179,7 @@ dockerConfiguration() {
 EOF
 }
 saveCoolifyConfiguration() {
-      echo "TAG=$VERSION
+      echo "TAG=${VERSION:-latest}
 COOLIFY_APP_ID=$COOLIFY_APP_ID
 COOLIFY_SECRET_KEY=$COOLIFY_SECRET_KEY
 COOLIFY_DATABASE_URL=file:../db/prod.db
@@ -328,11 +328,23 @@ fi
 if [ $FORCE -ne 1 ]; then
     echo "Installing Coolify."
 fi
-echo "Pulling Coolify latest image ($VERSION)."
-sudo docker pull -q coollabsio/coolify:$VERSION > /dev/null
-echo "Starting Coolify."
-cd ~/coolify && sudo docker run -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite coollabsio/coolify:$VERSION /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate" > /dev/null
 
+set +e
+echo "Pulling Coolify latest image (${VERSION})."
+IMAGE=ghcr.io/coollabsio/coolify:${VERSION}
+docker pull -q ghcr.io/coollabsio/coolify:${VERSION} > /dev/null 2>&1
+if [ $? -eq 1 ]; then
+    echo "Pulling Coolify latest image (latest)."
+    set -e
+    docker pull -q ghcr.io/coollabsio/coolify:latest > /dev/null 2>&1
+    IMAGE=ghcr.io/coollabsio/coolify:latest
+    VERSION=latest
+    saveCoolifyConfiguration
+fi
+set -e
+
+echo "Starting Coolify."
+cd ~/coolify && docker run -tid --env-file $COOLIFY_CONF_FOUND -v /var/run/docker.sock:/var/run/docker.sock -v coolify-db-sqlite $IMAGE /bin/sh -c "env | grep COOLIFY > .env && docker compose up -d --force-recreate" > /dev/null
 echo -e "Congratulations! Your Coolify instance is ready to use.\n"
 echo "Please visit http://$(curl -4s https://ifconfig.io):3000 to get started."
 echo "It will take a few minutes to start up, don't worry."
