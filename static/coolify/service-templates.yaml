@@ -1681,6 +1681,7 @@
       proxy:
         - port: '22'
           hostPort: $$config_hostport_ssh
+        - port: '3000'
   variables:
     - id: $$config_hostport_ssh
       name: SSH_PORT
@@ -2842,7 +2843,7 @@
   description: Open Source realtime backend in 1 file
   services:
     $$id:
-      image: coollabsio/pocketbase:$$core_version
+      image: ghcr.io/coollabsio/pocketbase:$$core_version
       volumes:
         - $$id-data:/app/pb_data
       ports:
