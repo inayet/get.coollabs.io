@@ -1,5 +1,5 @@
 - templateVersion: 1.0.0
-  defaultVersion: v1.9.6
+  defaultVersion: v1.9.15
   documentation: https://docs.appsmith.com/getting-started/setup/instance-configuration/
   type: appsmith
   name: Appsmith
@@ -32,7 +32,7 @@
       defaultValue: 'true'
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 1.2.0
+  defaultVersion: 1.3.0
   documentation: https://appwrite.io/docs
   type: appwrite
   name: Appwrite
@@ -1153,7 +1153,7 @@
         process should wait before aggregating stats from data in Appwrite
         Database. The default value is 15 minutes.
 - templateVersion: 1.0.0
-  defaultVersion: '9.22'
+  defaultVersion: 9.25.2
   documentation: https://docs.directus.io/getting-started/introduction.html
   type: directus-postgresql
   name: Directus
@@ -1390,7 +1390,7 @@
       description: ''
 - templateVersion: 1.0.0
   ignore: true
-  defaultVersion: 5.30.0
+  defaultVersion: 5.44.0
   documentation: https://docs.ghost.org
   arch: amd64
   type: ghost-mariadb
@@ -1507,7 +1507,7 @@
       defaultValue: $$generate_password
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 5.30.0
+  defaultVersion: 5.44.0
   documentation: https://docs.ghost.org
   type: ghost-mysql
   name: Ghost
@@ -1583,7 +1583,7 @@
       defaultValue: $$generate_password
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 5.30.0
+  defaultVersion: 5.44.0
   documentation: https://docs.ghost.org
   type: ghost-only
   name: Ghost
@@ -1646,7 +1646,7 @@
       placeholder: ghost_db
       required: true
 - templateVersion: 1.0.0
-  defaultVersion: '1.18'
+  defaultVersion: 1.19.1
   documentation: https://docs.gitea.io
   type: gitea
   name: Gitea
@@ -1720,7 +1720,7 @@
       defaultValue: $$generate_token
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: v3.0.2
+  defaultVersion: v3.1.1
   documentation: https://glitchtip.com/documentation
   type: glitchtip
   name: GlitchTip
@@ -1942,7 +1942,7 @@
       defaultValue: glitchtip
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 9.3.2
+  defaultVersion: 9.4.7
   documentation: https://hub.docker.com/r/grafana/grafana
   type: grafana
   name: Grafana
@@ -1964,7 +1964,7 @@
         - '3000'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: v2.16.1
+  defaultVersion: v2.23.0
   documentation: https://hasura.io/docs/latest/index/
   type: hasura
   name: Hasura
@@ -2031,7 +2031,7 @@
       defaultValue: hasura
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: '20.0'
+  defaultVersion: 21.1.0
   documentation: https://www.keycloak.org/documentation
   type: keycloak
   name: Keycloak
@@ -2132,7 +2132,7 @@
         - '8010'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: v3.7
+  defaultVersion: 3.7.4
   documentation: https://github.com/freyacodes/Lavalink
   description: Standalone audio sending node based on Lavaplayer.
   type: lavalink
@@ -2189,7 +2189,7 @@
       defaultValue: $$generate_password
       required: true
 - templateVersion: 1.0.0
-  defaultVersion: v1.3.8
+  defaultVersion: v1.3.10
   documentation: https://github.com/LibreTranslate/LibreTranslate
   description: >-
     Free and Open Source Machine Translation API. 100% self-hosted, offline
@@ -2244,7 +2244,7 @@
       defaultValue: 'false'
       description: Disable or enable web ui. True or false.
 - templateVersion: 1.0.0
-  defaultVersion: '7.7'
+  defaultVersion: 7.10.0
   isBeta: true
   documentation: https://docs.mattermost.com/
   type: mattermost-postgresql
@@ -2333,7 +2333,7 @@
       defaultValue: $$generate_fqdn
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: v0.30.5
+  defaultVersion: v1.1.1
   documentation: https://docs.meilisearch.com/learn/getting_started/quick_start.html
   type: meilisearch
   name: MeiliSearch
@@ -2361,7 +2361,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: RELEASE.2023-01-12T02-06-16Z
+  defaultVersion: RELEASE.2023-04-20T17-56-55Z.fips
   documentation: https://min.io/docs/minio
   type: minio
   name: MinIO
@@ -2422,7 +2422,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: 0.215.1
+  defaultVersion: 0.225.1
   documentation: https://docs.n8n.io
   type: n8n
   name: n8n.io
@@ -2453,7 +2453,7 @@
       defaultValue: $$generate_fqdn
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 0.104.2
+  defaultVersion: 0.106.1
   documentation: https://docs.nocodb.com
   type: nocodb
   name: NocoDB
@@ -2532,7 +2532,7 @@
       defaultValue: '1'
       description: Disable telemetry (Enter "1" to disable).
 - templateVersion: 1.0.0
-  defaultVersion: 1.1.5
+  defaultVersion: 1.1.7
   documentation: https://docs.openblocks.dev/
   type: openblocks
   name: Openblocks
@@ -2926,7 +2926,7 @@
       defaultValue: plausible.js
       description: This is the default script name.
 - templateVersion: 1.0.0
-  defaultVersion: 0.12.3
+  defaultVersion: 0.15.0
   documentation: https://pocketbase.io/docs/
   type: pocketbase
   name: Pocketbase
@@ -2939,7 +2939,7 @@
       ports:
         - '8080'
 - templateVersion: 1.0.0
-  defaultVersion: 1.4.0
+  defaultVersion: 1.3.6
   documentation: https://repman.io/
   type: repman-postgresql
   name: Repman
@@ -3209,7 +3209,7 @@
       defaultValue: repman
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 2023.01.15-52d41559
+  defaultVersion: 2023.4.21-b12d8261
   documentation: https://docs.searxng.org/
   type: searxng
   name: SearXNG
@@ -3284,7 +3284,7 @@
       defaultValue: $$generate_password
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 1.5.0-16-debian
+  defaultVersion: latest-16-distroless
   documentation: https://docs.soketi.app/
   isBeta: true
   type: soketi-only
@@ -3370,7 +3370,7 @@
       defaultValue: 'true'
       description: false - user auth disabled, true - user auth enabled
 - templateVersion: 1.0.0
-  defaultVersion: 0.58.4
+  defaultVersion: 0.59.3
   documentation: https://hub.docker.com/r/zadam/trilium
   description: >-
     A hierarchical note taking application with focus on building large personal
@@ -3392,7 +3392,7 @@
         - '8080'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: postgresql-v1.39.5
+  defaultVersion: postgresql-v2.0.1
   documentation: https://umami.is/docs/getting-started
   type: umami-postgresql
   name: Umami
@@ -3598,7 +3598,7 @@
       showOnConfiguration: true
 - templateVersion: 1.0.0
   ignore: true
-  defaultVersion: postgresql-v1.39.5
+  defaultVersion: postgresql-v2.0.1
   documentation: https://umami.is/docs/getting-started
   type: umami
   name: Umami
@@ -3803,7 +3803,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: 1.19.4
+  defaultVersion: 1.21.2
   documentation: https://hub.docker.com/r/louislam/uptime-kuma
   description: A free & fancy self-hosted monitoring tool.
   labels:
@@ -3820,7 +3820,7 @@
         - '3001'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: 1.27.0
+  defaultVersion: 1.28.1
   documentation: https://hub.docker.com/r/vaultwarden/server
   description: Bitwarden compatible server written in Rust.
   type: vaultwarden
@@ -3838,7 +3838,7 @@
         - '80'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: 4.9.1
+  defaultVersion: 4.11.0
   documentation: https://coder.com/docs/coder-oss/latest
   type: vscodeserver
   name: VSCode Server
@@ -3867,7 +3867,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: latest
+  defaultVersion: edge-2023-04-21-0f305b9cee79dfefadb095763dc427c4f98049b9
   documentation: https://docs.weblate.org/en/latest/admin/install/docker.html
   description: A copylefted libre software web-based continuous localization system.
   type: weblate
@@ -3946,7 +3946,7 @@
       defaultValue: weblate
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 0.8.0
+  defaultVersion: 0.8.2
   documentation: https://github.com/benbusby/whoogle-search
   type: whoogle
   name: Whoogle Search
