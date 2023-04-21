@@ -9,7 +9,7 @@
       "v1.9.8",
       "v1.9.6",
       "v1.9.4",
-      "v1.9.3",
+      "v1.9.2",
       "v1.9.1",
       "v1.8.15",
       "v1.8.12",
@@ -75,6 +75,7 @@
     "name": "directus-postgresql",
     "image": "directus/directus",
     "tags": [
+      "9.25.2",
       "9.25.0",
       "9.24.0",
       "9.23.4",
@@ -103,8 +104,7 @@
       "9.10.0",
       "9.9.0",
       "9.8.0",
-      "9.7.0",
-      "9.6.0"
+      "9.7.0"
     ]
   },
   {
@@ -114,33 +114,7 @@
       "stable",
       "master",
       "main",
-      "dev",
-      "SHA_ee6e83cfaadadaa56ab76e089e01f5631af3506f",
-      "SHA_e0e7dcd3cc4b81107e0d1cdf14e1a0ead35a11b1",
-      "SHA_deb4f9b4f561d890d8a80e6872fea9a98a265cc6",
-      "SHA_d8536f1f361130467e6a6f583c02aa10c8277567",
-      "SHA_d5cc307909d43447200483d76b5db74d8ed8349e",
-      "SHA_d1674476577a7fd3c88fc29f91c3f35f5bd6a260",
-      "SHA_d107cbb157abca6576110080736213efe0955cff",
-      "SHA_cce8efac5af8a69ff26c16402c60ec6bb07c3871",
-      "SHA_c9c55b2f5b33a76015241b97e03cfac1254b42a7",
-      "SHA_bcf451a3cb02d5c8a489fd30309249296057b084",
-      "SHA_bbfe419639514f949a042807addf0fde7d4de225",
-      "SHA_adc3afc4c7bcf96931a5f90cab65c282d860dbfd",
-      "SHA_ab5283ae95334f10b5041402dce79e333c472015",
-      "SHA_a3f4cb5ed0a4ee2d726705fc426636364aac17a1",
-      "SHA_a18224142bf51bc6463c3d22f45f62287902e9a6",
-      "SHA_90220517369a242887781cc10273eab320c4680b",
-      "SHA_8e5cff30d95963eaee2587488d351e0d658c8195",
-      "SHA_8cabe2817ce7ccaf2f0a9fdbb1b5d3411de87f81",
-      "SHA_7851f9da566132d87fa2a63004e78c3bc9c09c6c",
-      "SHA_6c0f2bed1754e9d579eb9575129a6e3dbc529c32",
-      "SHA_603508c8790d6a6fb1e852df1a58ead8e5b3ea6c",
-      "SHA_5705bf968810af7949de8727e2204712c02a7309",
-      "SHA_55efacf164a4749b50ee68ae8925e7dc9dfa3a0c",
-      "SHA_4bdd291ce61e5f5dfc063fa1b2d9be8c9ff1d4c4",
-      "SHA_3fba9cb6a9ceab0c78c6cff3220610f591f657cb",
-      "SHA_3d635b57606a9885babe91fe975b11429e0f2c38"
+      "dev"
     ]
   },
   {
@@ -406,6 +380,7 @@
       "7.0.0",
       "6.0.1",
       "6.0.0",
+      "21.1.0",
       "21.0.2",
       "21.0.1",
       "21.0.0",
@@ -428,15 +403,13 @@
       "13.0.1",
       "12.0.4",
       "12.0.2",
-      "12.0.0",
-      "11.0.2"
+      "12.0.0"
     ]
   },
   {
     "name": "languagetool",
     "image": "silviof/docker-languagetool",
     "tags": [
-      "latest",
       "6.0",
       "5.8",
       "5.7",
@@ -547,6 +520,7 @@
     "name": "minio",
     "image": "minio/minio",
     "tags": [
+      "RELEASE.2023-04-20T17-56-55Z.fips",
       "RELEASE.2023-04-13T03-08-07Z.fips",
       "RELEASE.2023-04-07T05-28-58Z.fips",
       "RELEASE.2023-03-24T21-41-23Z.fips",
@@ -575,14 +549,16 @@
       "RELEASE.2022-11-29T23-40-49Z.fips",
       "RELEASE.2022-11-26T22-43-32Z.fips",
       "RELEASE.2022-11-17T23-20-09Z.fips",
-      "RELEASE.2022-11-11T03-44-20Z.fips",
-      "RELEASE.2022-11-10T18-20-21Z.fips"
+      "RELEASE.2022-11-11T03-44-20Z.fips"
     ]
   },
   {
     "name": "n8n",
     "image": "n8nio/n8n",
     "tags": [
+      "0.225.1",
+      "0.225.0",
+      "0.224.2",
       "0.224.1",
       "0.224.0",
       "0.223.0",
@@ -609,10 +585,7 @@
       "0.214.4",
       "0.214.3",
       "0.214.1",
-      "0.214.0",
-      "0.212.1",
-      "0.211.2",
-      "0.211.1"
+      "0.214.0"
     ]
   },
   {
@@ -696,13 +669,9 @@
     "name": "pocketbase",
     "image": "ghcr.io/coollabsio/pocketbase",
     "tags": [
-      "latest-aarch64",
-      "latest",
-      "0.14.3-aarch64",
+      "0.15.0",
       "0.14.3",
-      "0.13.4-aarch64",
       "0.13.4",
-      "0.12.3-aarch64",
       "0.12.3"
     ]
   },
@@ -738,6 +707,8 @@
       "2023.4.5-934249dd",
       "2023.4.3-464e6966",
       "2023.4.3-3ab85db5",
+      "2023.4.21-b12d8261",
+      "2023.4.21-0265bf52",
       "2023.4.2-b8100e4e",
       "2023.4.2-a5155a32",
       "2023.4.17-3ba05876",
@@ -755,42 +726,13 @@
       "2023.4.10-007bc732",
       "2023.4.1-7592d859",
       "2023.4.1-24dba763",
-      "2023.3.31-f3b8e573",
-      "2023.3.31-a9680f0f",
-      "2023.3.31-901ccce6"
+      "2023.3.31-f3b8e573"
     ]
   },
   {
     "name": "soketi-only",
     "image": "quay.io/soketi/soketi",
     "tags": [
-      "pr-802-16-distroless",
-      "pr-802-16-debian",
-      "pr-802-16-alpine",
-      "pr-797-16-distroless",
-      "pr-797-16-debian",
-      "pr-797-16-alpine",
-      "pr-796-16-distroless",
-      "pr-796-16-debian",
-      "pr-796-16-alpine",
-      "pr-795-16-distroless",
-      "pr-795-16-debian",
-      "pr-795-16-alpine",
-      "pr-794-16-distroless",
-      "pr-794-16-debian",
-      "pr-794-16-alpine",
-      "pr-793-16-distroless",
-      "pr-793-16-debian",
-      "pr-793-16-alpine",
-      "pr-792-16-distroless",
-      "pr-792-16-debian",
-      "pr-792-16-alpine",
-      "pr-790-16-distroless",
-      "pr-790-16-debian",
-      "pr-790-16-alpine",
-      "pr-789-16-distroless",
-      "pr-789-16-debian",
-      "pr-789-16-alpine",
       "latest-16-distroless",
       "latest-16-debian",
       "latest-16-alpine"
@@ -836,6 +778,7 @@
     "name": "umami-postgresql",
     "image": "ghcr.io/umami-software/umami",
     "tags": [
+      "postgresql-v2.0.1",
       "postgresql-v2.0.0",
       "postgresql-v1.40.0",
       "postgresql-v1.40",
@@ -853,6 +796,7 @@
       "postgresql-v1.34.0",
       "postgresql-v1.33.3",
       "postgresql-latest",
+      "mysql-v2.0.1",
       "mysql-v2.0.0",
       "mysql-v1.40.0",
       "mysql-v1.40",
@@ -863,15 +807,14 @@
       "mysql-v1.39.1",
       "mysql-v1.39.0",
       "mysql-v1.38.0",
-      "mysql-v1.37.0",
-      "mysql-v1.36.1",
-      "mysql-v1.36.0"
+      "mysql-v1.37.0"
     ]
   },
   {
     "name": "umami",
     "image": "ghcr.io/umami-software/umami",
     "tags": [
+      "postgresql-v2.0.1",
       "postgresql-v2.0.0",
       "postgresql-v1.40.0",
       "postgresql-v1.40",
@@ -889,6 +832,7 @@
       "postgresql-v1.34.0",
       "postgresql-v1.33.3",
       "postgresql-latest",
+      "mysql-v2.0.1",
       "mysql-v2.0.0",
       "mysql-v1.40.0",
       "mysql-v1.40",
@@ -899,9 +843,7 @@
       "mysql-v1.39.1",
       "mysql-v1.39.0",
       "mysql-v1.38.0",
-      "mysql-v1.37.0",
-      "mysql-v1.36.1",
-      "mysql-v1.36.0"
+      "mysql-v1.37.0"
     ]
   },
   {
@@ -1000,12 +942,18 @@
     "name": "weblate",
     "image": "weblate/weblate",
     "tags": [
-      "latest",
+      "edge-2023-04-21-0f305b9cee79dfefadb095763dc427c4f98049b9",
+      "edge-2023-04-20-d31915413568cc28a997f90eaadd33b757844f56",
+      "edge-2023-04-20-d12cca770a3021e9ea5d71cfce7786a9fe8455e7",
+      "edge-2023-04-19-b1de8a3168201ce431773c42778a90209abfc460",
+      "edge-2023-04-19-6e0557a60e275537744cec49eb7a056edd1a2017",
+      "edge-2023-04-19-52264ab52cafc552188f4e0fadd02cc03773638a",
       "edge-2023-04-18-f7332a45e4e9a49fc10efea8b8107124391620ec",
       "edge-2023-04-18-bba53076178e99544dc36b9eda771a784d0f5840",
       "edge-2023-04-18-adf240893518b43bb31587c1c0bb56213e1bc162",
       "edge-2023-04-18-98d233df9f0d6d9023015f8c01fb4b0eda3eab00",
       "edge-2023-04-18-73fec103ca43d013b4d2ff6c80e80f6dc9b7bb82",
+      "edge-2023-04-18-4c1aded803c97b9fbbffa880cad3640fea99f099",
       "edge-2023-04-18-3bbf35bf9dffe55a58c321e2cf88f4e0678d54df",
       "edge-2023-04-18-1439822ae535fc1227b561ca43625b3bb79e3401",
       "edge-2023-04-17-aa987cf5506724a5374ddea58da4c592c4877efe",
@@ -1022,14 +970,7 @@
       "edge-2023-04-05-0de043f25a838e3337ea702a0fbc7131c8b4f897",
       "edge-2023-04-04-6488b9c14eecceb9750be0bf1ddc59c0f5611824",
       "edge-2023-04-03-f5f056b6882fd3b4c271c60c35088dd0fbaae194",
-      "edge-2023-04-02-e9f7dd871a923eba62abe462326c0c7878185593",
-      "edge-2023-04-02-e9b72250d536c7f5e0e64e38b4b198ba31ff57a2",
-      "edge-2023-04-02-8e0fb1798a390f3f033e64f6a1ef9becde01b7e7",
-      "edge-2023-03-31-88ae58044c37c78f33bad38d369925c5fc29c8b7",
-      "edge-2023-03-31-87f79e7d68c0e829d40f57eedcb6fd654543180d",
-      "edge-2023-03-31-07fa8471ba38f527b3ffabd3406c52d9d42ce6f7",
-      "edge-2023-03-30-4625a69c76186f585ef6ef6c83ad4e51ad63a1a9",
-      "edge-2023-03-28-674247ebcc4af42ba43c031a4de38454024d3879"
+      "edge-2023-04-02-e9f7dd871a923eba62abe462326c0c7878185593"
     ]
   },
   {
