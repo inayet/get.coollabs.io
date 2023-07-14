@@ -3,7 +3,7 @@
 [ ! -n "$BASH_VERSION" ] && echo "You can only run this script with bash, not sh / dash." && exit 1
 
 set -eou pipefail
-SCRIPT_VERSION="v1.4.1"
+SCRIPT_VERSION="v1.4.2"
 ARCH=$(uname -m)
 WHO=$(whoami)
 DEBUG=0
@@ -15,7 +15,7 @@ DOCKER_MINOR=10
 DOCKER_VERSION_OK="nok"
 
 COOLIFY_APP_ID=$(cat /proc/sys/kernel/random/uuid)
-COOLIFY_SECRET_KEY=$(echo $(($(date +%s%N) / 1000000)) | sha256sum | base64 | head -c 32)
+COOLIFY_SECRET_KEY=$(echo $(openssl rand -base64 1024) | sha256sum | base64 | head -c 32)
 COOLIFY_WHITE_LABELED=false
 COOLIFY_WHITE_LABELED_ICON=
 COOLIFY_AUTO_UPDATE=false
@@ -25,6 +25,7 @@ COOLIFY_CONF_FOUND=$(find ~ -path '*/coolify/.env')
 if [ -n "$COOLIFY_CONF_FOUND" ]; then
     eval "$(grep ^COOLIFY_APP_ID= $COOLIFY_CONF_FOUND)"
     eval "$(grep ^COOLIFY_SECRET_KEY= $COOLIFY_CONF_FOUND)"
+    eval "$(grep ^COOLIFY_SECRET_KEY_BETTER= $COOLIFY_CONF_FOUND)"
     eval "$(grep ^COOLIFY_DATABASE_URL= $COOLIFY_CONF_FOUND)"
     eval "$(grep ^COOLIFY_HOSTED_ON= $COOLIFY_CONF_FOUND)"
     eval "$(grep ^COOLIFY_WHITE_LABELED_ICON= $COOLIFY_CONF_FOUND)"
@@ -132,6 +133,7 @@ if [ $DEBUG -eq 1 ]; then
     echo "FORCE=$FORCE"
     echo "COOLIFY_APP_ID=$COOLIFY_APP_ID"
     echo "COOLIFY_SECRET_KEY=$COOLIFY_SECRET_KEY"
+    echo "COOLIFY_SECRET_KEY_BETTER=$COOLIFY_SECRET_KEY"
     echo "COOLIFY_DATABASE_URL=${COOLIFY_DATABASE_URL:-../db/prod.db}"
     echo "COOLIFY_HOSTED_ON=${COOLIFY_HOSTED_ON:-docker}"
     echo "COOLIFY_WHITE_LABELED=$COOLIFY_WHITE_LABELED"
@@ -194,6 +196,7 @@ saveCoolifyConfiguration() {
     echo "TAG=${VERSION:-latest}
 COOLIFY_APP_ID=$COOLIFY_APP_ID
 COOLIFY_SECRET_KEY=$COOLIFY_SECRET_KEY
+COOLIFY_SECRET_KEY_BETTER=$COOLIFY_SECRET_KEY
 COOLIFY_DATABASE_URL=file:../db/prod.db
 COOLIFY_HOSTED_ON=docker
 COOLIFY_WHITE_LABELED=$COOLIFY_WHITE_LABELED 
