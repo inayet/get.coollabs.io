@@ -1153,7 +1153,7 @@
         process should wait before aggregating stats from data in Appwrite
         Database. The default value is 15 minutes.
 - templateVersion: 1.0.0
-  defaultVersion: 10.4.3
+  defaultVersion: 10.5.0
   documentation: https://docs.directus.io/getting-started/introduction.html
   type: directus-postgresql
   name: Directus
@@ -1390,7 +1390,7 @@
       description: ''
 - templateVersion: 1.0.0
   ignore: true
-  defaultVersion: 5.54.4
+  defaultVersion: 5.55.1
   documentation: https://docs.ghost.org
   arch: amd64
   type: ghost-mariadb
@@ -1507,7 +1507,7 @@
       defaultValue: $$generate_password
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 5.54.4
+  defaultVersion: 5.55.0
   documentation: https://docs.ghost.org
   type: ghost-mysql
   name: Ghost
@@ -1583,7 +1583,7 @@
       defaultValue: $$generate_password
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 5.54.4
+  defaultVersion: 5.55.0
   documentation: https://docs.ghost.org
   type: ghost-only
   name: Ghost
@@ -1646,7 +1646,7 @@
       placeholder: ghost_db
       required: true
 - templateVersion: 1.0.0
-  defaultVersion: 1.20.0
+  defaultVersion: 1.20.1
   documentation: https://docs.gitea.io
   type: gitea
   name: Gitea
@@ -1942,7 +1942,7 @@
       defaultValue: glitchtip
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 10.0.2
+  defaultVersion: 10.0.3
   documentation: https://hub.docker.com/r/grafana/grafana
   type: grafana
   name: Grafana
@@ -1964,7 +1964,7 @@
         - '3000'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: v2.30.0
+  defaultVersion: v2.30.1
   documentation: https://hasura.io/docs/latest/index/
   type: hasura
   name: Hasura
@@ -2132,7 +2132,7 @@
         - '8010'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: 3.7.6
+  defaultVersion: 3.7.7
   documentation: https://github.com/freyacodes/Lavalink
   description: Standalone audio sending node based on Lavaplayer.
   type: lavalink
@@ -2361,7 +2361,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: RELEASE.2023-07-18T17-49-40Z.fips
+  defaultVersion: RELEASE.2023-07-21T21-12-44Z.fips
   documentation: https://min.io/docs/minio
   type: minio
   name: MinIO
@@ -2422,7 +2422,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: 1.0.3
+  defaultVersion: 1.0.5
   documentation: https://docs.n8n.io
   type: n8n
   name: n8n.io
@@ -2440,6 +2440,7 @@
       image: n8nio/n8n:$$core_version
       volumes:
         - $$id-data:/root/.n8n
+        - $$id-data:/home/node/.n8n
         - $$id-data-write:/files
         - /var/run/docker.sock:/var/run/docker.sock
       environment:
@@ -3171,7 +3172,7 @@
       defaultValue: repman
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 2023.7.19-a446dea1
+  defaultVersion: 2023.7.22-a259bd4d4
   documentation: https://docs.searxng.org/
   type: searxng
   name: SearXNG
@@ -3800,7 +3801,7 @@
         - '80'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: 4.14.1
+  defaultVersion: 4.15.0
   documentation: https://coder.com/docs/coder-oss/latest
   type: vscodeserver
   name: VSCode Server
@@ -3829,7 +3830,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: edge-2023-07-19-cc134e3a77d56e6dceba943131dabee1237c85c8
+  defaultVersion: edge-2023-07-23-76ef228a328611576b19058d3dae139fa3ad3399
   documentation: https://docs.weblate.org/en/latest/admin/install/docker.html
   description: A copylefted libre software web-based continuous localization system.
   type: weblate
