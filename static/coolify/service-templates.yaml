@@ -1,5 +1,5 @@
 - templateVersion: 1.0.0
-  defaultVersion: v1.9.27
+  defaultVersion: v1.9.34
   documentation: https://docs.appsmith.com/getting-started/setup/instance-configuration/
   type: appsmith
   name: Appsmith
@@ -32,7 +32,7 @@
       defaultValue: 'true'
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 1.3.7
+  defaultVersion: 1.4.1
   documentation: https://appwrite.io/docs
   type: appwrite
   name: Appwrite
@@ -1153,7 +1153,7 @@
         process should wait before aggregating stats from data in Appwrite
         Database. The default value is 15 minutes.
 - templateVersion: 1.0.0
-  defaultVersion: 10.5.0
+  defaultVersion: 10.6.1
   documentation: https://docs.directus.io/getting-started/introduction.html
   type: directus-postgresql
   name: Directus
@@ -1390,7 +1390,7 @@
       description: ''
 - templateVersion: 1.0.0
   ignore: true
-  defaultVersion: 5.55.1
+  defaultVersion: 5.61.1
   documentation: https://docs.ghost.org
   arch: amd64
   type: ghost-mariadb
@@ -1507,7 +1507,7 @@
       defaultValue: $$generate_password
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 5.55.0
+  defaultVersion: 5.60.0
   documentation: https://docs.ghost.org
   type: ghost-mysql
   name: Ghost
@@ -1583,7 +1583,7 @@
       defaultValue: $$generate_password
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 5.55.0
+  defaultVersion: 5.60.0
   documentation: https://docs.ghost.org
   type: ghost-only
   name: Ghost
@@ -1646,7 +1646,7 @@
       placeholder: ghost_db
       required: true
 - templateVersion: 1.0.0
-  defaultVersion: 1.20.1
+  defaultVersion: 1.20.3
   documentation: https://docs.gitea.io
   type: gitea
   name: Gitea
@@ -1942,7 +1942,7 @@
       defaultValue: glitchtip
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 10.0.3
+  defaultVersion: 10.1.1
   documentation: https://hub.docker.com/r/grafana/grafana
   type: grafana
   name: Grafana
@@ -1964,7 +1964,7 @@
         - '3000'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: v2.30.1
+  defaultVersion: v2.33.1
   documentation: https://hasura.io/docs/latest/index/
   type: hasura
   name: Hasura
@@ -2132,7 +2132,7 @@
         - '8010'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: 3.7.7
+  defaultVersion: 3.7.8
   documentation: https://github.com/freyacodes/Lavalink
   description: Standalone audio sending node based on Lavaplayer.
   type: lavalink
@@ -2244,7 +2244,7 @@
       defaultValue: 'false'
       description: Disable or enable web ui. True or false.
 - templateVersion: 1.0.0
-  defaultVersion: 8.0.0
+  defaultVersion: 8.1.1
   isBeta: true
   documentation: https://docs.mattermost.com/
   type: mattermost-postgresql
@@ -2333,7 +2333,7 @@
       defaultValue: $$generate_fqdn
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: v1.2.0
+  defaultVersion: v1.3.1
   documentation: https://docs.meilisearch.com/learn/getting_started/quick_start.html
   type: meilisearch
   name: MeiliSearch
@@ -2361,7 +2361,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: RELEASE.2023-07-21T21-12-44Z.fips
+  defaultVersion: RELEASE.2023-09-04T19-57-37Z.fips
   documentation: https://min.io/docs/minio
   type: minio
   name: MinIO
@@ -2422,7 +2422,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: 1.0.5
+  defaultVersion: 1.5.1
   documentation: https://docs.n8n.io
   type: n8n
   name: n8n.io
@@ -2454,7 +2454,7 @@
       defaultValue: $$generate_fqdn
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 0.109.3
+  defaultVersion: 0.111.1
   documentation: https://docs.nocodb.com
   type: nocodb
   name: NocoDB
@@ -2889,7 +2889,7 @@
       defaultValue: plausible.js
       description: This is the default script name.
 - templateVersion: 1.0.0
-  defaultVersion: 0.16.10
+  defaultVersion: 0.17.7
   documentation: https://pocketbase.io/docs/
   type: pocketbase
   name: Pocketbase
@@ -3172,7 +3172,7 @@
       defaultValue: repman
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: 2023.7.22-a259bd4d4
+  defaultVersion: 2023.9.3-01be9e0e2
   documentation: https://docs.searxng.org/
   type: searxng
   name: SearXNG
@@ -3247,7 +3247,6 @@
       defaultValue: $$generate_password
       description: ''
 - templateVersion: 1.0.0
-  defaultVersion: latest-16-distroless
   documentation: https://docs.soketi.app/
   isBeta: true
   type: soketi-only
@@ -3355,7 +3354,7 @@
         - '8080'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: postgresql-v2.3.0
+  defaultVersion: postgresql-v2.6.2
   documentation: https://umami.is/docs/getting-started
   type: umami-postgresql
   name: Umami
@@ -3561,7 +3560,7 @@
       showOnConfiguration: true
 - templateVersion: 1.0.0
   ignore: true
-  defaultVersion: postgresql-v2.3.0
+  defaultVersion: postgresql-v2.6.2
   documentation: https://umami.is/docs/getting-started
   type: umami
   name: Umami
@@ -3766,7 +3765,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: 1.22.1
+  defaultVersion: 1.23.1
   documentation: https://hub.docker.com/r/louislam/uptime-kuma
   description: A free & fancy self-hosted monitoring tool.
   labels:
@@ -3783,7 +3782,7 @@
         - '3001'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: 1.29.0
+  defaultVersion: 1.29.2
   documentation: https://hub.docker.com/r/vaultwarden/server
   description: Bitwarden compatible server written in Rust.
   type: vaultwarden
@@ -3801,7 +3800,7 @@
         - '80'
   variables: []
 - templateVersion: 1.0.0
-  defaultVersion: 4.15.0
+  defaultVersion: 4.16.1
   documentation: https://coder.com/docs/coder-oss/latest
   type: vscodeserver
   name: VSCode Server
@@ -3830,7 +3829,7 @@
       description: ''
       showOnConfiguration: true
 - templateVersion: 1.0.0
-  defaultVersion: edge-2023-07-23-76ef228a328611576b19058d3dae139fa3ad3399
+  defaultVersion: edge-2023-09-04-9e837eb9ffac68a73b832f76e437cf04ac04be59
   documentation: https://docs.weblate.org/en/latest/admin/install/docker.html
   description: A copylefted libre software web-based continuous localization system.
   type: weblate
